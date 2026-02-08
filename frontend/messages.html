@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Messages | Aditi Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pinky: '#ec4899',
+            softpink: '#fff1f2',
+            gold: '#facc15',
+            darkgold: '#d4af37'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-softpink via-white to-[#fff7e6] min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-black to-gray-900 text-white shadow-2xl z-50 flex flex-col">
+    <div class="p-6 border-b border-pinky/30">
+      <h1 class="text-2xl font-bold">
+        <span class="text-pinky">Aditi</span> 
+        <span class="text-darkgold">Admin</span>
+      </h1>
+      <p class="text-gray-400 text-sm mt-1">Welcome back</p>
+    </div>
+
+    <nav class="flex-1 px-4 py-6 space-y-2">
+      <a href="dashboard.html" class="flex items-center px-4 py-3 rounded-lg hover:bg-white/10 transition">
+        <span class="mr-3">🏠</span> Dashboard
+      </a>
+      <a href="messages.html" class="flex items-center px-4 py-3 rounded-lg bg-pinky/20 text-pinky font-medium">
+        <span class="mr-3">✉️</span> Messages
+        <span id="unreadBadge" class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full hidden">0</span>
+      </a>
+      <a href="projects.html" class="flex items-center px-4 py-3 rounded-lg hover:bg-white/10 transition">
+        <span class="mr-3">🚀</span> Projects
+      </a>
+      <a href="skills.html" class="flex items-center px-4 py-3 rounded-lg hover:bg-white/10 transition">
+        <span class="mr-3">⚡</span> Skills
+      </a>
+    </nav>
+
+    <div class="p-6 border-t border-gray-800">
+      <button onclick="logout()" class="w-full bg-red-600/80 hover:bg-red-700 text-white py-2 rounded-lg transition">
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="ml-64 p-8">
+
+    <header class="flex justify-between items-center mb-10">
+      <h2 class="text-3xl font-bold text-gray-800">Contact Messages</h2>
+      <button onclick="refreshMessages()" class="px-5 py-2.5 bg-gradient-to-r from-pinky to-darkgold text-white rounded-lg hover:opacity-90 transition shadow-md">
+        Refresh
+      </button>
+    </header>
+
+    <!-- Messages Table -->
+    <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-pinky/20 overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead class="bg-gradient-to-r from-pinky/10 to-darkgold/10">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-black">Name</th>
+              <th class="px-6 py-4 font-semibold text-black">Email</th>
+              <th class="px-6 py-4 font-semibold text-black">Message Preview</th>
+              <th class="px-6 py-4 font-semibold text-black">Date</th>
+              <th class="px-6 py-4 font-semibold text-black">Status</th>
+              <th class="px-6 py-4 font-semibold text-black">Action</th>
+            </tr>
+          </thead>
+          <tbody id="messagesTableBody" class="divide-y divide-gray-200">
+            <!-- Messages loaded here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="noMessages" class="hidden text-center py-16 text-gray-600 text-lg">
+        No messages yet.
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Full Message Modal -->
+  <div id="messageModal" class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border border-pinky/30">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold text-gray-800">Message Details</h3>
+        <button onclick="closeModal()" class="text-gray-500 hover:text-pinky text-2xl">&times;</button>
+      </div>
+      <div class="space-y-4">
+        <p><strong>Name:</strong> <span id="modalName"></span></p>
+        <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+        <p><strong>Date:</strong> <span id="modalDate"></span></p>
+        <p><strong>Message:</strong></p>
+        <p id="modalMessage" class="whitespace-pre-wrap text-gray-700 bg-gray-50 p-4 rounded-lg"></p>
+      </div>
+      <div class="mt-8 flex justify-end gap-4">
+        <button onclick="closeModal()" class="px-6 py-2 border border-gray-400 rounded-lg hover:bg-gray-100 transition">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Logout
+    function logout() {
+      localStorage.removeItem('admin-auth');
+      localStorage.removeItem('admin-login-time');
+      window.location.href = 'login.html';
+    }
+
+    // Auth protection
+    if (localStorage.getItem('admin-auth') !== 'true') {
+      window.location.href = 'login.html';
+    }
+
+    const tableBody = document.getElementById('messagesTableBody');
+    const noMessagesDiv = document.getElementById('noMessages');
+    const unreadBadge = document.getElementById('unreadBadge');
+
+    // Fetch messages from backend
+    async function loadMessages() {
+      try {
+        const res = await fetch('http://localhost:5000/api/contact', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (!res.ok) throw new Error('Failed to fetch messages');
+
+        const messages = await res.json();
+
+        tableBody.innerHTML = '';
+        let unreadCount = 0;
+
+        if (messages.length === 0) {
+          noMessagesDiv.classList.remove('hidden');
+          unreadBadge.classList.add('hidden');
+          return;
+        }
+
+        noMessagesDiv.classList.add('hidden');
+
+        messages.forEach(msg => {
+          if (!msg.isRead) unreadCount++;
+
+          const row = document.createElement('tr');
+          row.className = !msg.isRead ? 'bg-pinky/5 font-medium' : '';
+
+          row.innerHTML = `
+            <td class="px-6 py-4">${msg.name || '—'}</td>
+            <td class="px-6 py-4">${msg.email || '—'}</td>
+            <td class="px-6 py-4 max-w-md truncate">${msg.message.substring(0, 80)}${msg.message.length > 80 ? '...' : ''}</td>
+            <td class="px-6 py-4 text-gray-600">${new Date(msg.createdAt).toLocaleString('en-IN')}</td>
+            <td class="px-6 py-4">
+              <span class="px-3 py-1 rounded-full text-xs font-medium ${
+                msg.isRead ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+              }">
+                ${msg.isRead ? 'Read' : 'Unread'}
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <button 
+                onclick="openMessage('${msg._id}', '${msg.name}', '${msg.email}', '${msg.message.replace(/'/g, "\\'")}', '${new Date(msg.createdAt).toLocaleString('en-IN')}')"
+                class="text-pinky hover:text-darkgold transition font-medium">
+                View
+              </button>
+            </td>
+          `;
+          tableBody.appendChild(row);
+        });
+
+        // Update unread count badge
+        if (unreadCount > 0) {
+          unreadBadge.textContent = unreadCount;
+          unreadBadge.classList.remove('hidden');
+        } else {
+          unreadBadge.classList.add('hidden');
+        }
+
+      } catch (err) {
+        console.error(err);
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="6" class="text-center py-12 text-red-600 font-medium">
+              Could not load messages. Please check if server is running.
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    // Open full message in modal
+    function openMessage(id, name, email, message, date) {
+      document.getElementById('modalName').textContent = name;
+      document.getElementById('modalEmail').textContent = email;
+      document.getElementById('modalDate').textContent = date;
+      
+      document.getElementById('modalMessage').textContent = message;
+
+      document.getElementById('messageModal').classList.remove('hidden');
+
+      // Mark as read (optimistic update)
+      markAsRead(id);
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('messageModal').classList.add('hidden');
+    }
+
+    // Mark message as read (call backend)
+    async function markAsRead(messageId) {
+      try {
+        await fetch(`http://localhost:5000/api/contact/${messageId}/read`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        // Refresh list after marking read
+        loadMessages();
+      } catch (err) {
+        console.error("Failed to mark as read:", err);
+      }
+    }
+
+    function refreshMessages() {
+      loadMessages();
+    }
+    async function markAllAsRead() {
+      try {
+        await fetch('http://localhost:5000/api/contact/read-all', {
+          method: 'PATCH'
+        });
+      } catch (err) {
+        console.error("Mark all read failed", err);
+      }
+    }
+
+    // Auto load messages when page opens
+     window.addEventListener('load', () => {
+      loadMessages();
+    });
+
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  aaj main akeli hi gyi thi..dadi ghr thi... dadi ko 1 kg curd chahiye thi, isliye unhone mere ko hi bheja...
+
+Main gyi.. niche curd li then billing...ke bdd jb main stairs se upr jane lgi...tb side se gaurav ne bulaya... and consversation hui...
+
+Gaurav: "tumhari mummy ne daata toh nhi?? paiso ke liye"
+
+Me: "nhii.. nhii"
+
+gaurav: "aacha theek hey.. maar waar toh nhi pdi na??" -->

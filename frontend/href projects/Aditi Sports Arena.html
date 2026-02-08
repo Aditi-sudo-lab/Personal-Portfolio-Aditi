@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aditi's Sports Arena</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #0a0a0a;
+        color: #f8f8f8;
+        font-family: "Poppins", sans-serif;
+      }
+      .gold-text {
+        color: #ffd700;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+
+    <!-- Navbar with Larger Aditi Sports Logo -->
+<nav class="fixed w-full top-0 z-50 bg-black bg-opacity-70 backdrop-blur-lg shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <!-- ADITI SPORTS LOGO (LARGER) -->
+      <img src="./Imgs/Aditi Sports Logo Design.png" 
+           alt="Aditi Sports Logo" 
+           class="w-24 h-24 rounded-full object-contain">
+    </div>
+
+    <ul class="flex space-x-6 text-white text-lg font-medium">
+      <li><a href="#home" class="hover:text-yellow-400">Home</a></li>
+      <li><a href="#about" class="hover:text-yellow-400">About</a></li>
+      <li><a href="#sports" class="hover:text-yellow-400">Our Sports</a></li>
+      <li><a href="#gym" class="hover:text-yellow-400">Gym</a></li>
+      <li><a href="#basketball" class="hover:text-yellow-400">Basketball</a></li>
+      <li><a href="#contact" class="hover:text-yellow-400">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative"
+      style="background-image: url('https://www.shutterstock.com/image-photo/barbell-fitness-training-gym-sports-600nw-2139742761.jpg');">
+      <div class="absolute inset-0 bg-black opacity-60"></div>
+      <div class="relative z-10 text-center">
+        <h2 class="text-5xl md:text-6xl font-extrabold gold-text mb-4">Welcome to Aditi’s Sports Arena</h2>
+        <p class="text-lg text-gray-200 mb-8">Where passion meets performance — for every sport lover!</p>
+        <a href="#sports"
+          class="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition">Explore
+          Sports</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-8 md:px-16 bg-gradient-to-b from-black to-gray-900">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-4xl font-bold mb-6 gold-text">About Us</h2>
+          <p class="text-gray-300 leading-relaxed">
+            At <span class="gold-text font-semibold">Aditi's Sports Arena</span>, we believe in shaping champions through
+            dedication, discipline, and determination.
+            Our facility offers world-class infrastructure for a variety of sports — from gym workouts to intense
+            basketball training. Whether you’re a beginner or a pro, we provide
+            everything you need to push your limits and achieve greatness.
+          </p>
+          <p class="mt-4 text-gray-400">
+            Our mission is simple — to make fitness and sports accessible, enjoyable, and inspiring for everyone.
+          </p>
+        </div>
+        <div>
+          <img
+            src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFza2V0YmFsbHxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000"
+            alt="About Us" class="rounded-2xl shadow-lg">
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Sports Section -->
+    <section id="sports" class="py-20 bg-black">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-bold gold-text mb-2">Our Sports</h2>
+        <p class="text-gray-300">Explore a wide range of outdoor and indoor sports available at our arena</p>
+      </div>
+
+      <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+        <!--  Sports Cards -->
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+          <img src="https://media.posterlounge.com/img/products/760000/754678/754678_poster.jpg"
+            class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <h3 class="text-yellow-400 text-lg font-semibold">Football</h3>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+          <img src="https://media.istockphoto.com/id/177427917/photo/close-up-of-red-cricket-ball-and-bat-sitting-on-grass.jpg?s=612x612&w=0&k=20&c=DcorerbBUeDNTfld3OclgHxCty4jih2yDCzipffX6zw="
+            class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <h3 class="text-yellow-400 text-lg font-semibold">Cricket</h3>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+          <img src="https://t3.ftcdn.net/jpg/03/10/62/12/360_F_310621281_foEqKBGtGlNWFQRePgdF5BpLOFyTsnzO.jpg"
+            class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <h3 class="text-yellow-400 text-lg font-semibold">Badminton</h3>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+          <img src="https://t4.ftcdn.net/jpg/07/23/74/71/360_F_723747156_xVKg8z3O6o1vftoB4owuL1OeYWJ2vqws.jpg"
+            class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <h3 class="text-yellow-400 text-lg font-semibold">Hockey</h3>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+          <img src="https://media.istockphoto.com/id/1483011696/photo/tennis-ball-racket-and-court-ground-with-mockup-space-blurred-background-or-outdoor-sunshine.jpg?s=612x612&w=0&k=20&c=XHTdIS788Vry0iNFL04YaTfOoxAEojz4RqSz-ZA5fZY="
+            class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <h3 class="text-yellow-400 text-lg font-semibold">Tennis</h3>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+          <img src="https://t3.ftcdn.net/jpg/02/89/30/62/360_F_289306269_rJ04x9o9Dbv8zHcImf9kRZA08bVCimIP.jpg"
+            class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <h3 class="text-yellow-400 text-lg font-semibold">Running</h3>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+          <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=600&q=80"
+            class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <h3 class="text-yellow-400 text-lg font-semibold">Basketball</h3>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-xl shadow-lg">
+          <img src="https://en.reformsports.com/oxegrebi/2023/10/what-is-an-olymp-swimming-pool.jpg"
+            class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+            <h3 class="text-yellow-400 text-lg font-semibold">Swimming</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== GYM EQUIPMENT SECTION ====================== -->
+     <section id="gym" class="bg-gray-950 text-yellow-300 py-20">
+       <div class="max-w-7xl mx-auto px-6 text-center">
+         <h2 class="text-4xl font-bold mb-10">Our Gym Equipment</h2>
+         <p class="text-gray-400 max-w-2xl mx-auto mb-12">
+           Train with the best tools in Aditi's Sports Arena — from strength machines to modern cardio gear.
+         </p>
+
+         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+           <!-- 1 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://gymequipment.co.uk/pub/media/magefan_blog/img_23-Blog-DumbbellsMix-opti.jpg" alt="Dumbbells" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Dumbbells</span>
+             </div>
+           </div>
+           <!-- 2 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://training.fit/wp-content/uploads/2021/11/barbell-800x448.jpg" alt="Barbells" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Barbells</span>
+             </div>
+           </div>
+           <!-- 3 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://png.pngtree.com/thumb_back/fh260/background/20230609/pngtree-room-with-black-treadmills-sitting-in-the-dark-image_2884907.jpg" alt="Treadmill" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Treadmill</span>
+             </div>
+           </div>
+           <!-- 4 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://images.ctfassets.net/ipjoepkmtnha/6JCJHLirlxE4ApyIcVO65t/77ab153e58b3d3015ae4ac2899400adc/NV-tower-gym.jpg" alt="Exercise Bike" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Exercise Bike</span>
+             </div>
+           </div>
+           <!-- 5 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://www.shutterstock.com/image-photo/empty-bench-press-exercise-machine-260nw-1337675645.jpg" alt="Bench Press" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Bench Press</span>
+             </div>
+           </div>
+           <!-- 6 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://www.majorfitness.com/cdn/shop/articles/lat-pulldown-machine-back-workout_6aca3166-b717-4b4e-9c6c-88dc1e960399_1100x.jpg?v=1726650881" alt="Lat Pulldown" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Lat Pulldown Machine</span>
+             </div>
+           </div>
+           <!-- 7 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://t4.ftcdn.net/jpg/02/60/05/37/360_F_260053734_mXlxoCzAWOV1NEZaF3Qg1MzfhjKaWdL9.jpg" alt="Kettlebells" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Kettlebells</span>
+             </div>
+           </div>
+           <!-- 8 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://static01.nyt.com/images/2022/11/08/multimedia/26WNT-ROWING-WORKOUT5-1-310a/26WNT-ROWING-WORKOUT5-1-310a-videoSixteenByNineJumbo1600.jpg" alt="Rowing Machine" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Rowing Machine</span>
+             </div>
+           </div>
+           <!-- 9 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://www.trxtraining.com/cdn/shop/articles/cable-crossover-exercise_c891b104-9029-495b-b639-0ae3cf2625d3.jpg?v=1759911467" alt="Cable Crossover" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Cable Crossover</span>
+             </div>
+           </div>
+           <!-- 10 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://www.gornation.com/cdn/shop/articles/Simon_performs_Pull_Up_in_Dubai_1_33dc00f2-eea8-4e42-b1b9-ca424baa4ca4.png?v=1748244841" alt="Pull-Up Bar" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Pull-Up Bar</span>
+             </div>
+           </div>
+           <!-- 11 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://www.asphaltgreen.org/wp-content/uploads/2025/01/Leg_Press_Lowered-1-scaled.webp" alt="Leg Press" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Leg Press Machine</span>
+             </div>
+           </div>
+           <!-- 12 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://repfitness.com/cdn/shop/articles/Smith-Machine-Exercises_b5bc4109-7cbf-4ee9-a210-f3d629f9bf07.jpg?v=1761150388" alt="Smith Machine" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Smith Machine</span>
+             </div>
+           </div>
+           <!-- 13 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://gym-mikolo.com/cdn/shop/articles/Untitled-design-2-1.png?v=1736745405&width=1500" alt="Incline Bench" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Incline Bench</span>
+             </div>
+           </div>
+           <!-- 14 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://media.istockphoto.com/id/1335927112/photo/young-woman-doing-exercise-on-a-chest-machine-fly-in-the-gym-women-wear-sportswear-flexing.jpg?s=612x612&w=0&k=20&c=-zzfhoR1nKfyhXP3wEenUIV5GqYQWZVAVSpPhlBuB7M=" alt="Chest Fly Machine" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Chest Fly Machine</span>
+             </div>
+           </div>
+           <!-- 15 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://cdn.mos.cms.futurecdn.net/qLwgKc64QtSTQpPefJnUZC.jpg" alt="Leg Curl Machine" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Leg Curl Machine</span>
+             </div>
+           </div>
+           <!-- 16 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://images.unsplash.com/photo-1577992805669-c80be3285f36?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3F1YXQlMjByYWNrfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000" alt="Squat Rack" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Squat Rack</span>
+             </div>
+           </div>
+           <!-- 17 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://media.istockphoto.com/id/962573582/photo/woman-with-battle-rope-battle-ropes-exercise-in-the-fitness-gym.jpg?s=612x612&w=0&k=20&c=EPEEOHK-Kh2QtLyAYKD1hhxgzMtDp7-joTwYX9TVIXs=" alt="Rope Machine" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Rope Machine</span>
+             </div>
+           </div>
+           <!-- 18 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://www.mensjournal.com/.image/t_share/MTk2MTM2OTE3NTI0ODE3MDQx/shutterstock_1272114133.jpg" alt="Ab Roller" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Ab Roller</span>
+             </div>
+           </div>
+           <!-- 19 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://swolverine.com/cdn/shop/articles/Resistance_Band_Exercises.jpg?v=1645052429&width=1024" alt="Resistance Bands" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Resistance Bands</span>
+             </div>
+           </div>
+           <!-- 20 -->
+           <div class="relative overflow-hidden rounded-2xl group">
+             <img src="https://img.freepik.com/premium-photo/serious-muscular-young-european-guy-with-beard-make-pushups-exercises-with-fit-ball-hands_116547-82678.jpg" alt="Medicine Ball" class="w-full h-60 object-cover group-hover:scale-110 duration-500">
+             <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 duration-500">
+               <span class="text-yellow-300 font-semibold text-lg">Medicine Ball</span>
+             </div>
+           </div>
+         </div>
+       </div>
+    </section>
+
+    <!-- ====================== BASKETBALL ZONE ====================== -->
+     <section id="basketball" class="bg-gray-900 text-yellow-300 py-20">
+       <div class="max-w-7xl mx-auto px-6">
+         <h2 class="text-4xl font-bold text-center mb-12">🏀 Basketball Zone</h2>
+       </div>
+     
+       <!-- 1. Indoor Courts -->
+       <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 mb-20">
+         <img src="https://playarena.in/wp-content/uploads/2024/08/basketball_02.jpg" alt="Indoor Basketball Court" class="w-full md:w-1/2 h-80 object-cover rounded-2xl shadow-lg">
+         <div class="md:w-1/2 text-center md:text-left">
+           <h3 class="text-2xl font-semibold mb-4">Indoor Court</h3>
+           <p class="text-gray-400">Train and play on our state-of-the-art indoor courts with professional flooring and lighting. Aditi's Sports Arena offers world-class facilities for all players.</p>
+         </div>
+       </div>
+     
+       <!-- 2. Coaching Programs -->
+       <div class="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10 mb-20">
+         <div class="md:w-1/2 text-center md:text-left">
+           <h3 class="text-2xl font-semibold mb-4">Coaching Programs</h3>
+           <p class="text-gray-400">Expert coaches train players of all skill levels — focusing on fundamentals, teamwork, and advanced strategies for tournaments and competitions.</p>
+         </div>
+         <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d" alt="Basketball Coaching" class="w-full md:w-1/2 h-80 object-cover rounded-2xl shadow-lg">
+       </div>
+     
+       <!-- 3. Fitness & Conditioning -->
+       <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 mb-20">
+         <img src="https://www.shutterstock.com/image-photo/this-image-shows-closeup-basketball-600nw-2481347523.jpg" alt="Basketball Fitness" class="w-full md:w-1/2 h-80 object-cover rounded-2xl shadow-lg">
+         <div class="md:w-1/2 text-center md:text-left">
+           <h3 class="text-2xl font-semibold mb-4">Fitness & Conditioning</h3>
+           <p class="text-gray-400">Enhance your agility, endurance, and strength through specialized basketball conditioning workouts crafted by professional trainers.</p>
+         </div>
+       </div>
+     
+       <!-- 4. Basketball Rules -->
+       <div class="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10 mb-20">
+         <div class="md:w-1/2 text-center md:text-left">
+           <h3 class="text-2xl font-semibold mb-4">Basketball Rules</h3>
+           <ul class="text-gray-400 list-disc list-inside space-y-2">
+             <li>Each team has 5 players on the court at a time.</li>
+             <li>The game consists of 4 quarters of 10 minutes each.</li>
+             <li>A field goal is worth 2 points; 3 points if shot beyond the arc.</li>
+             <li>Free throws are worth 1 point each.</li>
+             <li>No running with the ball — you must dribble while moving.</li>
+             <li>24-second shot clock for each possession.</li>
+             <li>Personal fouls result in free throws after 5 team fouls per quarter.</li>
+             <li>The team with the most points at the end wins.</li>
+           </ul>
+         </div>
+         <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc" alt="Basketball Rules" class="w-full md:w-1/2 h-80 object-cover rounded-2xl shadow-lg">
+       </div>
+     
+       <!-- 5. Practice Schedule -->
+       <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 mb-20">
+         <img src="https://sportcourt.com/nitropack_static/ovdGdIejWPhggxcBWEqbxrtlSwxDrgAC/assets/images/optimized/rev-949ebde/sportcourt.com/wp-content/uploads/2024/09/Residential-Basketball-5050-1600x1000-1.webp" alt="Practice Schedule" class="w-full md:w-1/2 h-80 object-cover rounded-2xl shadow-lg">
+         <div class="md:w-1/2 text-center md:text-left">
+           <h3 class="text-2xl font-semibold mb-4">Practice Schedule</h3>
+           <p class="text-gray-400">Morning (6 AM – 9 AM) and Evening (5 PM – 8 PM) sessions are available. Join any time to sharpen your shooting, dribbling, and defense techniques.</p>
+         </div>
+       </div>
+     
+       <!-- 6. Gallery -->
+       <div class="max-w-7xl mx-auto px-6">
+         <h3 class="text-3xl font-semibold mb-10 text-center">Gallery</h3>
+         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+           <img src="https://images.pexels.com/photos/2834917/pexels-photo-2834917.jpeg?cs=srgb&dl=pexels-chuck-2834917.jpg&fm=jpg" class="rounded-2xl h-60 w-full object-cover hover:scale-110 duration-500" alt="Basketball action 1">
+           <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc" class="rounded-2xl h-60 w-full object-cover hover:scale-110 duration-500" alt="Basketball action 2">
+           <img src="https://i.pinimg.com/736x/bf/2d/6f/bf2d6fac9e9a5ea24af0b5bf61c7266a.jpg" class="rounded-2xl h-60 w-full object-cover hover:scale-110 duration-500" alt="Basketball action 3">
+           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBAGXrA2viDMNfbcgDp0C-7BUHdPQf2Xo9Gg&s" class="rounded-2xl h-60 w-full object-cover hover:scale-110 duration-500" alt="Basketball action 4">
+           <img src="https://goaztecs.com/imgproxy/WjYhWtr2t1pVijLqNJyo9hbM4kZloF1hWhEosiHEmqQ/rs:fit:1980:0:0/g:ce/q:90/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3Nkc3UtcHJvZC8yMDI1LzAzLzE5L1k1U0hwelZKSFFCVWxVbFVZVWg2WFMwRGU3V1lCd1hhemJYRXBoTzQuanBn.jpg" class="rounded-2xl h-60 w-full object-cover hover:scale-110 duration-500" alt="Basketball action 5">
+           <img src="https://images.pexels.com/photos/3001822/pexels-photo-3001822.jpeg?cs=srgb&dl=pexels-markusspiske-3001822.jpg&fm=jpg" class="rounded-2xl h-60 w-full object-cover hover:scale-110 duration-500" alt="Basketball action 6">
+         </div>
+       </div>
+    </section>
+
+    <!-- ====================== CONTACT SECTION ====================== -->
+     <section id="contact" class="bg-gray-950 text-yellow-300 py-20">
+       <div class="max-w-6xl mx-auto px-6">
+         <h2 class="text-4xl font-bold text-center mb-10">📩 Contact Us</h2>
+         <p class="text-center text-gray-400 mb-12">Have questions or want to join our sports programs? Get in touch below!</p>
+     
+         <form class="max-w-3xl mx-auto bg-gray-900 p-8 rounded-2xl shadow-lg space-y-6">
+           <div>
+             <label class="block mb-2 text-yellow-400">Full Name</label>
+             <input type="text" placeholder="Enter your full name" class="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring focus:ring-yellow-500 outline-none">
+           </div>
+           <div>
+             <label class="block mb-2 text-yellow-400">Email</label>
+             <input type="email" placeholder="Enter your email" class="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring focus:ring-yellow-500 outline-none">
+           </div>
+           <div>
+             <label class="block mb-2 text-yellow-400">Message</label>
+             <textarea rows="4" placeholder="Write your message..." class="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring focus:ring-yellow-500 outline-none"></textarea>
+           </div>
+           <button type="submit" class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-yellow-300 transition duration-300 w-full">Send Message</button>
+         </form>
+       </div>
+    </section>
+
+    <!-- Footer Section (Text Left, Logo Right) -->
+<footer class="bg-black text-gray-400 py-10 border-t border-yellow-600 mt-20">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    
+    <!-- LEFT SIDE TEXT -->
+    <div class="space-y-3 text-left">
+      <h3 class="text-2xl font-semibold text-yellow-400">Aditi's Sports & Gym Arena</h3>
+      <p>Strength • Passion • Dedication — All in One Place 💪🏀</p>
+      <div class="space-x-4">
+        <a href="#home" class="hover:text-yellow-400">Home</a>
+        <a href="#sports" class="hover:text-yellow-400">Sports</a>
+        <a href="#gym" class="hover:text-yellow-400">Gym</a>
+        <a href="#basketball" class="hover:text-yellow-400">Basketball</a>
+        <a href="#contact" class="hover:text-yellow-400">Contact</a>
+      </div>
+      <p class="text-sm text-gray-500 mt-4">© 2025 Aditi Manchanda. All Rights Reserved.</p>
+    </div>
+
+    <!-- RIGHT SIDE LOGO -->
+    <div class="mt-6 md:mt-0">
+      <img src="./Imgs/Aditi Sports Logo Design.png" alt="Aditi Sports Logo" class="w-40 h-40 object-cover border-4 border-yellow-600 shadow-lg">
+    </div>
+  </div>
+</footer>
+     
+    <!-- ====================== SMOOTH SCROLL & ANIMATIONS ====================== -->
+     <script>
+     // Smooth scroll for nav links
+     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+       anchor.addEventListener('click', function (e) {
+         e.preventDefault();
+         document.querySelector(this.getAttribute('href')).scrollIntoView({
+           behavior: 'smooth'
+         });
+       });
+     });
+     
+     // Fade-in on scroll animation
+     const observer = new IntersectionObserver(entries => {
+       entries.forEach(entry => {
+         if (entry.isIntersecting) {
+           entry.target.classList.add('opacity-100', 'translate-y-0');
+         }
+       });
+     });
+     
+     document.querySelectorAll('section').forEach(section => {
+       section.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-1000');
+       observer.observe(section);
+     });
+    </script>
+  </body>
+</html>

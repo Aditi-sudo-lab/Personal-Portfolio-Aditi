@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About | Aditi Manchanda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pinky: '#ec4899',
+            softpink: '#fff1f2',
+            gold: '#facc15'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .card {
+      position: relative;
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 15px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .card .icon-container {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff00cc, #00dbde);
+    }
+    .card .icon-container img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.07) 0%, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.07) 100%);
+      background-size: 200% 200%;
+      animation: waterfall 3s linear infinite;
+      border-radius: 20px;
+      z-index: -1;
+    }
+    @keyframes waterfall {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 200%; }
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ff00cc, #00dbde);
+      filter: blur(25px);
+      opacity: 0.4;
+      z-index: -2;
+      transition: all 0.6s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+    }
+    .card:hover::after {
+      filter: blur(40px);
+      opacity: 0.7;
+    }
+    .heading {
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff00cc, #00dbde);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gallery-img {
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+    .gallery-img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body class="bg-softpink text-black">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0.5 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center bg-white/10 backdrop-blur-md rounded-xl shadow-lg">
+      <!-- Logo -->
+      <h1 class="text-2xl font-bold text-pink-500">ADITI</h1>
+      <!-- Desktop Links -->
+      <div class="hidden md:flex space-x-6 font-medium relative">
+        <a href="./index.html" class="nav-link text-black hover:text-pink-500 relative">Home</a>
+        <a href="./about.html" class="nav-link text-pink-500 relative font-semibold">About</a>
+        <a href="./projects.html" class="nav-link text-black hover:text-pink-500 relative">Projects</a>
+        <a href="./contact.html" class="nav-link text-black hover:text-pink-500 relative">Contact</a>
+        <a href="./cv.html" class="nav-link text-black hover:text-pink-500 relative">CV</a>
+        
+        <!-- CV Download Button -->
+        <a href="./assets/cv/Aditi_Manchanda_CV.pdf" download
+           class="px-4 py-2 bg-pink-500 text-white rounded-lg hover:scale-105 transition">
+          Download CV
+        </a>
+      </div>
+      
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button id="menu-btn" class="focus:outline-none">
+          <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-md rounded-xl px-6 py-4 mt-2">
+      <a href="./index.html" class="block py-2 text-black hover:text-pink-500">Home</a>
+      <a href="./about.html" class="block py-2 text-pink-500">About</a>
+      <a href="./projects.html" class="block py-2 text-black hover:text-pink-500">Projects</a>
+      <a href="./contact.html" class="block py-2 text-black hover:text-pink-500">Contact</a>
+      
+      <!-- CV Links -->
+      <a href="./cv.html" class="block py-2 text-black hover:text-pink-500">CV</a>
+      <a href="./assets/cv/Aditi_Manchanda_CV.pdf" download class="block py-2 text-pink-500 font-semibold">
+        Download CV
+      </a>
+    </div>
+  </nav>
+
+  <!-- ABOUT PAGE CONTENT -->
+  <section id="about" class="py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    <div class="max-w-6xl mx-auto px-6 space-y-20">
+       <!-- ABOUT / MYSELF -->
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="w-full md:w-1/2">
+          <img src="./assets/imgs/about different.jpg" class="rounded-3xl shadow-xl w-full h-[500px] object-cover" />
+        </div>
+        <div class="w-full md:w-1/2 space-y-4">
+          <h2 class="text-4xl font-bold">About <span class="text-pink-500">Me</span></h2>
+          <p class="text-black-700 leading-7">
+            Hi, Myself Aditi Manchanda, a 15-year-old Class 11 student with a strong passion for web development and technology. 
+            I have successfully completed a MERN Stack Web Development course, where I gained hands-on experience in building responsive, modern, 
+            and user-friendly websites using current industry practices. I enjoy transforming ideas into clean, functional digital experiences and 
+            continuously work on improving my technical and creative skills. Alongside coding, I am actively interested in playing basketball, which has
+            helped me develop discipline and teamwork, as I am a good chess player also and I enjoy listening to music as a way to stay motivated and inspired. 
+            I am always eager to learn, grow, and explore new opportunities in the field of web development.
+          </p>
+          <ul class="text-black-700 space-y-1">
+            <li><b>Age:</b> 15</li>
+            <li><b>DOB:</b> 09 April 2010</li>
+            <li><b>Hobby:</b> Basketball, Music, Chess</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION SECTION -->
+  <section id="education" class="py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    <div class="max-w-6xl mx-auto px-6 space-y-24">
+  
+      <!-- SECTION HEADING -->
+      <h2 class="text-4xl font-bold text-center mb-16">
+        Education
+      </h2>
+  
+      <!-- HIGH SCHOOL - LEFT IMAGE -->
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <!-- LEFT IMAGE -->
+        <div class="w-full md:w-1/2">
+          <img src="https://content.jdmagicbox.com/comp/ghaziabad/k4/011pxx11.xx11.140426112539.t8k4/catalogue/air-force-school-hindan-nagar-ghaziabad-schools-1HAsU5ltHb.jpg" class="rounded-3xl shadow-xl w-full h-[400px] object-cover" />
+        </div>
+        <!-- RIGHT TEXT -->
+        <div class="w-full md:w-1/2 space-y-6">
+          <h3 class="text-xl font-semibold text-pink-500">High School - CBSE Board</h3>
+          <h2 class="text-2xl font-bold text-[#d4af37]">Air Force School Hindan, Mohan Nagar</h2>
+          <p class="text-black-700 leading-8">
+            I studied at this school from 3rd to 12th grade, and my journey here was truly remarkable. 
+            The teachers provided exceptional guidance, and I was encouraged to explore and excel in academics, sports, and extracurricular activities. 
+            I built lifelong friendships with my classmates and had the opportunity to participate in numerous events that enriched my learning experience. 
+            I am proud to have achieved <b>92%</b> in my 10th class, which reflects my dedication and hard work during these formative years.
+          </p>
+        </div>
+      </div>
+  
+      <!-- INTERMEDIATE - RIGHT IMAGE (Zig-Zag) -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+        <!-- RIGHT IMAGE -->
+        <div class="w-full md:w-1/2">
+          <img src="https://images.uniapply.com/uploads/college/image/500/7067/Air_Force_School_Hindan_601_Building_2.jpg" class="rounded-3xl shadow-xl w-full h-[400px] object-cover" />
+        </div>
+        <!-- LEFT TEXT -->
+        <div class="w-full md:w-1/2 space-y-6">
+          <h3 class="text-xl font-semibold text-pink-500">Intermediate - CBSE Board</h3>
+          <h2 class="text-2xl font-bold text-[#d4af37]">Air Force School Hindan, Mohan Nagar</h2>
+          <p class="text-black-700 leading-8">
+            I am currently pursuing my 12th grade at the same school, where I continue to grow both academically and personally. 
+            The learning environment is highly supportive, with teachers who are always available to clarify doubts and encourage critical thinking. 
+            I actively participate in school activities, collaborate with peers on projects, and strive to maintain a balance between studies and personal growth. 
+            This stage of my education is helping me prepare for future challenges, while keeping my curiosity and passion for learning alive every day.
+          </p>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+
+    
+  <!-- TECH SKILLS SECTION -->
+  <section id="tech-skills" class="py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- SECTION HEADING -->
+      <h2 class="text-4xl font-bold text-center mb-16">
+        Tech <span class="text-pink-500">Skills</span>
+      </h2>
+  
+      <!-- SKILLS FLEX CONTAINER -->
+      <div class="grid md:grid-cols-2 gap-10">
+  
+        <!-- HTML -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-black-800 font-semibold">
+            <span>HTML</span>
+            <span>100%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div class="bg-pink-500 h-3 rounded-full" style="width: 100%;"></div>
+          </div>
+        </div>
+  
+        <!-- CSS -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-black-800 font-semibold">
+            <span>CSS</span>
+            <span>98%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div class="bg-pink-500 h-3 rounded-full" style="width: 98%;"></div>
+          </div>
+        </div>
+  
+        <!-- Tailwind CSS -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-black-800 font-semibold">
+            <span>Tailwind CSS</span>
+            <span>90%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div class="bg-pink-500 h-3 rounded-full" style="width: 90%;"></div>
+          </div>
+        </div>
+  
+        <!-- Bootstrap -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-black-800 font-semibold">
+            <span>Bootstrap</span>
+            <span>80%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div class="bg-pink-500 h-3 rounded-full" style="width: 80%;"></div>
+          </div>
+        </div>
+  
+        <!-- JavaScript -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-black-800 font-semibold">
+            <span>JavaScript</span>
+            <span>95%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div class="bg-pink-500 h-3 rounded-full" style="width: 95%;"></div>
+          </div>
+        </div>
+  
+        <!-- React.js -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-black-800 font-semibold">
+            <span>React.js</span>
+            <span>85%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div class="bg-pink-500 h-3 rounded-full" style="width: 85%;"></div>
+          </div>
+        </div>
+  
+        <!-- Node.js -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-black-800 font-semibold">
+            <span>Node.js</span>
+            <span>91%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div class="bg-pink-500 h-3 rounded-full" style="width: 91%;"></div>
+          </div>
+        </div>
+  
+        <!-- Express.js -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-black-800 font-semibold">
+            <span>Express.js</span>
+            <span>89%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div class="bg-pink-500 h-3 rounded-full" style="width: 89%;"></div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+
+
+  <!-- GALLERY SECTION -->
+  <section id="gallery" class="py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- SECTION HEADING -->
+      <h2 class="text-4xl font-bold text-center mb-16">
+        My <span class="text-pink-500">Gallery</span>
+      </h2>
+  
+      <!-- IMAGE GRID -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        
+        <!-- IMAGE 1 -->
+        <div class="overflow-hidden rounded-2xl shadow-lg transform transition duration-500 hover:scale-105">
+          <img src="https://i.ibb.co/j9pQmdSv/nidhi-and-diya.jpg" alt="Gallery Image 1" class="w-full h-[32rem] object-cover">
+        </div>
+  
+        <!-- IMAGE 2 -->
+        <div class="overflow-hidden rounded-2xl shadow-lg transform transition duration-500 hover:scale-105">
+          <img src="https://i.ibb.co/VWdqWz3f/nidhi-and-br-amedkar.jpg" alt="Gallery Image 2" class="w-full h-[32rem] object-cover">
+        </div>
+  
+        <!-- IMAGE 3 -->
+        <div class="overflow-hidden rounded-2xl shadow-lg transform transition duration-500 hover:scale-105">
+          <img src="https://i.ibb.co/pjjXY60z/nidhi-and-mcdonalds.jpg" alt="Gallery Image 3" class="w-full h-[32rem] object-cover">
+        </div>
+  
+        <!-- IMAGE 4 -->
+        <div class="overflow-hidden rounded-2xl shadow-lg transform transition duration-500 hover:scale-105">
+          <img src="https://i.ibb.co/cSCQ564v/nidhi-and-laptop.jpg" alt="Gallery Image 4" class="w-full h-[32rem] object-cover">
+        </div>
+  
+        <!-- IMAGE 5 -->
+        <div class="overflow-hidden rounded-2xl shadow-lg transform transition duration-500 hover:scale-105">
+          <img src="https://i.ibb.co/S4B3y9Td/nidhi-and-club-house.jpg" alt="Gallery Image 5" class="w-full h-[32rem] object-cover">
+        </div>
+  
+        <!-- IMAGE 6 -->
+        <div class="overflow-hidden rounded-2xl shadow-lg transform transition duration-500 hover:scale-105">
+          <img src="https://i.ibb.co/xSLZgPdS/Nidhi-in-cllg.jpg" alt="Gallery Image 6" class="w-full h-[32rem] object-cover">
+        </div>
+  
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+    <footer id="footer" class="bg-black text-gray-300 mt-32">
+      <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-12">
+        <div>
+          <h3 class="text-3xl font-bold text-pink-500 mb-4">
+            Aditi <span class="text-yellow-400">Manchanda</span>
+          </h3>
+          <p class="leading-7 text-gray-400">
+            MERN Stack Web Developer building modern, responsive
+            and scalable web applications with clean UI & smooth UX.
+          </p>
+        </div>
+    
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-white">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="#about" class="hover:text-pink-500">About</a></li>
+            <li><a href="#skills" class="hover:text-pink-500">Skills</a></li>
+            <li><a href="#projects" class="hover:text-pink-500">Projects</a></li>
+            <li><a href="#contact" class="hover:text-pink-500">Contact</a></li>
+          </ul>
+        </div>
+  
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-white">Connect</h4>
+          <div class="flex gap-4">
+            <a class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-pink-500 transition">🌐</a>
+            <a class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-pink-500 transition">💼</a>
+            <a class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-pink-500 transition">📧</a>
+          </div>
+        </div>
+    
+      </div>
+    
+      <div class="border-t border-gray-700 py-6 text-center text-gray-500">
+        © 2026 <span class="text-pink-500 font-semibold">Aditi Manchanda</span> All rights reserved.
+      </div>
+    </footer>
+
+</body>
+</html>

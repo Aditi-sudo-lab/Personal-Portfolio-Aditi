@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>ChatGPT Clone</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* ===== Sidebar Button ===== */
+  .sidebar-btn{
+    width:56px !important;
+    height:56px !important;
+    background:#2f2f2f;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .sidebar-btn:hover{
+    background:#3a3a3a;
+    transform: scale(1.08);
+  }
+  
+  /* ===== Sidebar Icons (FORCED SIZE) ===== */
+  .sidebar-btn img{
+    width:36px !important;
+    height:36px !important;
+    max-width:none !important;
+    max-height:none !important;
+    object-fit:contain;
+    display:block;
+    transition: transform 0.2s ease;
+  }
+  
+  .sidebar-btn:hover img{
+    transform: scale(1.15);
+  }
+  
+  /* ===== History Panel ===== */
+  #historyPanel{
+    background:#202123;
+  }
+  
+  /* ===== History Items ===== */
+  #historyList div{
+    padding:10px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    transition: background 0.2s ease;
+  }
+  
+  #historyList div:hover{
+    background:#2f2f2f;
+  }
+  
+  /* ===== Scrollbar ===== */
+  ::-webkit-scrollbar{
+    width:6px;
+  }
+  
+  ::-webkit-scrollbar-track{
+    background:#1f2023;
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    background:#3a3a3a;
+    border-radius:10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover{
+    background:#4a4a4a;
+  }
+  
+  /* ===== Input Placeholder ===== */
+  input::placeholder{
+    color:#9ca3af;
+  }
+  
+  /* ===== Global ===== */
+  *{
+    box-sizing:border-box;
+  }
+</style>
+</head>
+
+<body class="h-screen flex text-white overflow-hidden bg-gradient-to-b from-[#1e1f20] via-[#1f2023] to-[#131314]">
+
+<!-- ===== Vertical Sidebar ===== -->
+<div class="w-16 bg-[#202123] flex flex-col justify-between items-center py-4 border-r border-gray-800 z-50">
+  <div class="flex flex-col gap-5">
+    <button onclick="sidebarAction('New Chat')" class="sidebar-btn">
+      <img src="https://i.ibb.co/Ps7Bq6xr/Screenshot-2026-01-17-210955-removebg-preview.png">
+    </button>
+    <button onclick="sidebarAction('Explore')" class="sidebar-btn">
+      <img src="https://i.ibb.co/0j6ms7TR/Screenshot-2026-01-17-211013-removebg-preview.png">
+    </button>
+    <button onclick="sidebarAction('History')" class="sidebar-btn">
+      <img src="https://i.ibb.co/qMzwP8qs/Screenshot-2026-01-17-211025-removebg-preview.png">
+    </button>
+    <button onclick="sidebarAction('Settings')" class="sidebar-btn">
+      <img src="https://i.ibb.co/j9FjXzpS/Screenshot-2026-01-17-211045-removebg-preview.png">
+    </button>
+  </div>
+
+  <div class="flex flex-col gap-5">
+    <button onclick="sidebarAction('Profile')" class="sidebar-btn">
+      <img src="https://i.ibb.co/8L1VKDj1/Screenshot-2026-01-17-211112-removebg-preview.png">
+    </button>
+    <!-- <button onclick="sidebarAction('Logout')" class="sidebar-btn"></button> -->
+  </div>
+</div>
+
+<!-- ===== History Slider ===== -->
+<div id="historyPanel"
+class="fixed top-0 left-16 h-full w-72 bg-[#202123] border-r border-gray-800-transform translate-x-[-100%] transition-transform duration-300 z-40">
+
+  <div class="flex justify-between items-center p-4 border-b border-gray-800">
+    <span class="font-semibold">Chat History</span>
+    <button onclick="toggleHistory()" class="text-xl">✕</button>
+  </div>
+  <div id="historyList" class="p-4 space-y-2 text-sm text-gray-300"></div>
+</div>
+
+<!-- ===== Main ===== -->
+<div class="flex-1 flex flex-col">
+
+<!-- Top Navbar -->
+<div class="h-14 flex justify-between items-center px-6 border-b border-gray-800">
+  <span class="font-semibold">ChatGPT</span>
+</div>
+
+<!-- Chat Area -->
+<div class="flex-1 overflow-y-auto">
+  <div id="chatBox" class="max-w-3xl mx-auto px-4 py-8 space-y-6">
+    <div class="flex justify-start">
+      <div class="bg-[#444654] px-4 py-3 rounded-xl text-sm max-w-[85%]">
+        Hello! How can I assist you today?
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Input -->
+<div class="border-t border-gray-800 p-4">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center bg-[#2f2f2f] rounded-xl px-4">
+      <input id="userInput" placeholder="Ask anything"
+      class="flex-1 bg-transparent py-4 text-sm outline-none"
+      onkeydown="if(event.key==='Enter') sendMessage()" />
+      <button onclick="sendMessage()" class="text-xl text-gray-300">➤</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== Styles ===== -->
+<style>
+.sidebar-btn{
+  width:44px;
+  height:44px;
+  background:#2f2f2f;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.sidebar-btn img{
+  width:26px;
+  height:26px;
+}
+.sidebar-btn:hover{
+  background:#3a3a3a;
+}
+</style>
+
+<!-- ===== Script ===== -->
+<script>
+let chats = [];
+let currentChat = [];
+
+function sidebarAction(name){
+  if(name === "History") toggleHistory();
+  if(name === "New Chat"){
+    currentChat = [];
+    document.getElementById("chatBox").innerHTML = "";
+  }
+}
+
+function toggleHistory(){
+  const panel = document.getElementById("historyPanel");
+  panel.classList.toggle("translate-x-[-100%]");
+}
+
+async function sendMessage(){
+  const input = document.getElementById("userInput");
+  const chatBox = document.getElementById("chatBox");
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  chatBox.innerHTML += `
+  <div class="flex justify-end">
+    <div class="bg-[#343541] px-4 py-3 rounded-xl text-sm max-w-[85%]">
+      ${msg}
+    </div>
+  </div>`;
+
+  currentChat.push({ role:"user", text:msg });
+  input.value="";
+
+  const typing=document.createElement("div");
+  typing.className="text-gray-400 italic text-sm";
+  typing.innerText="AI is typing...";
+  chatBox.appendChild(typing);
+
+  const res = await fetch("http://localhost:5000/chat",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({ message:msg })
+  });
+  const data = await res.json();
+  typing.remove();
+
+  chatBox.innerHTML += `
+  <div class="flex justify-start">
+    <div class="bg-[#444654] px-4 py-3 rounded-xl text-sm max-w-[85%]">
+      ${data.reply.replace(/\n/g,"<br>")}
+    </div>
+  </div>`;
+
+  currentChat.push({ role:"ai", text:data.reply });
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  if(currentChat.length === 2){
+    chats.push([...currentChat]);
+    renderHistory();
+  }
+}
+
+function renderHistory(){
+  const list=document.getElementById("historyList");
+  list.innerHTML="";
+  chats.forEach((chat,index)=>{
+    const div=document.createElement("div");
+    div.className="p-2 rounded hover:bg-[#2f2f2f] cursor-pointer";
+    div.innerText=chat[0].text;
+    div.onclick=()=>loadChat(index);
+    list.prepend(div);
+  });
+}
+
+function loadChat(index){
+  const chatBox=document.getElementById("chatBox");
+  chatBox.innerHTML="";
+  chats[index].forEach(m=>{
+    chatBox.innerHTML+=`
+    <div class="flex ${m.role==="user"?"justify-end":"justify-start"}">
+      <div class="bg-[#${m.role==="user"?"343541":"444654"}] px-4 py-3 rounded-xl text-sm max-w-[85%]">
+        ${m.text.replace(/\n/g,"<br>")}
+      </div>
+    </div>`;
+  });
+}
+</script>
+
+</body>
+</html>

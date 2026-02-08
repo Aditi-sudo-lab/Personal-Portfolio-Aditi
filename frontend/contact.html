@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditi Manchanda | Contact</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pinky: '#ec4899',
+            gold: '#d4af37'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes bounceToast {
+      0% { 
+        transform: translateY(2.5rem); 
+        opacity: 0; 
+      }
+      50% { 
+        transform: translateY(-0.5rem); 
+        opacity: 1; 
+      }
+      100% { 
+        transform: translateY(0); 
+        opacity: 1; 
+      }
+    }
+  </style>
+</head>
+<body class="bg-softpink text-black">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0.5 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center bg-white/10 backdrop-blur-md rounded-xl shadow-lg">
+      <!-- Logo -->
+      <h1 class="text-2xl font-bold text-pink-500">ADITI</h1>
+      <!-- Desktop Links -->
+      <div class="hidden md:flex space-x-6 font-medium relative">
+        <a href="./index.html" class="nav-link text-black hover:text-pink-500 relative">Home</a>
+        <a href="./about.html" class="nav-link text-black hover:text-pink-500 relative">About</a>
+        <a href="./projects.html" class="nav-link text-black hover:text-pink-500 relative">Projects</a>
+        <a href="./contact.html" class="nav-link text-pink-500 relative font-semibold">Contact</a>
+        <a href="./cv.html" class="nav-link text-black hover:text-pink-500 relative">CV</a>
+        
+        <!-- CV Download Button -->
+        <a href="./assets/cv/Aditi_Manchanda_CV.pdf" download
+           class="px-4 py-2 bg-pink-500 text-white rounded-lg hover:scale-105 transition">
+          Download CV
+        </a>
+      </div>
+      
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button id="menu-btn" class="focus:outline-none">
+          <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-md rounded-xl px-6 py-4 mt-2">
+      <a href="./index.html" class="block py-2 text-black hover:text-pink-500">Home</a>
+      <a href="./about.html" class="block py-2 text-black hover:text-pink-500">About</a>
+      <a href="./projects.html" class="block py-2 text-black hover:text-pink-500">Projects</a>
+      <a href="./contact.html" class="block py-2 text-pink-500">Contact</a>
+      
+      <!-- CV Links -->
+      <a href="./cv.html" class="block py-2 text-black hover:text-pink-500">CV</a>
+      <a href="./assets/cv/Aditi_Manchanda_CV.pdf" download class="block py-2 text-pink-500 font-semibold">
+        Download CV
+      </a>
+    </div>
+  </nav>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 hidden z-50 bg-pink-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-12 opacity-0 transition-all duration-300 ease-in-out">
+    Message sent successfully!
+  </div>
+  <!-- CONTACT SECTION -->
+  <section class="max-w-4xl mx-auto mt-16 p-6 bg-white/10 backdrop-blur-md rounded-xl shadow-lg">
+    <h2 class="text-3xl font-bold mb-6 text-black flex items-center justify-center">
+        Contact<span class="text-pink-500 ml-2">ME</span>
+    </h2>
+
+    <!-- Flex container for image and form -->
+    <div class="flex flex-col md:flex-row md:space-x-8">
+      
+      <!-- Left Image -->
+      <div class="flex-shrink-0 mb-6 md:mb-0">
+        <img src="https://openstream.ai/hubfs/Customer-Service.png" alt="Contact Image" class="w-80 h-auto rounded-lg shadow-md">
+      </div>
+
+      <!-- Left-aligned Form -->
+      <form id="contactForm" method="POST" class="flex-1 space-y-4 bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl p-6 shadow-lg">
+        <div>
+          <label for="name" class="block text-sm font-medium mb-1">Name</label>
+          <input type="text" id="name" name="name" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white/30">
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1">Email</label>
+          <input type="email" id="email" name="email" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white/30">
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium mb-1">Message</label>
+          <textarea id="message" name="message" rows="5" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white/30"></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600 transition">Send Message</button>
+      </form>
+    </div>
+  </section><br>
+
+  <!-- DWELLING PLACE -->
+  <section class="w-full h-screen flex flex-col items-center justify-center p-6 bg-white/10 backdrop-blur-md">
+    <h2 class="text-3xl font-bold mb-6 text-black flex items-center justify-center">
+      Dwelling<span class="text-pink-500 ml-2">Place</span>
+  </h2>
+    <!-- Map -->
+      <div class="w-full h-full md:h-[80%] rounded-lg overflow-hidden shadow-lg">
+         <iframe src="https://www.google.com/maps?q=J-39,+Shiwalik+Nagar,+Haridwar,+249403&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+         </iframe>
+      </div> <br>
+      <!-- Contact info under map -->
+      <div class="w-full flex flex-col md:flex-row justify-around items-center mt-8 space-y-6 md:space-y-0">
+        <!-- Town -->
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center text-white text-2xl shadow-lg mb-2">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <p class="text-center font-medium">Town: Haridwar</p>
+        </div>
+      
+        <!-- Call -->
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center text-white text-2xl shadow-lg mb-2">
+            <i class="fas fa-phone"></i>
+          </div>
+          <p class="text-center font-medium">Call: +91 9958597077</p>
+        </div>
+      
+        <!-- Email -->
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center text-white text-2xl shadow-lg mb-2">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <p class="text-center font-medium">Email: aditirahul7738@gmail.com</p>
+        </div>
+      </div>
+      <!-- Toast Notification -->
+      <!-- <div id="toast" class="fixed bottom-5 right-5 hidden bg-pink-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-12 opacity-0 transition-all duration-300 ease-in-out">
+        Message sent successfully!
+      </div> -->
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="bg-black text-gray-300 mt-32">
+    <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-12">
+      <div>
+        <h3 class="text-3xl font-bold text-pink-500 mb-4">
+          Aditi <span class="text-yellow-400">Manchanda</span>
+        </h3>
+        <p class="leading-7 text-gray-400">
+          MERN Stack Web Developer building modern, responsive
+          and scalable web applications with clean UI & smooth UX.
+        </p>
+      </div>
+  
+      <div>
+        <h4 class="text-xl font-semibold mb-4 text-white">Quick Links</h4>
+        <ul class="space-y-3">
+          <li><a href="#about" class="hover:text-pink-500">About</a></li>
+          <li><a href="#skills" class="hover:text-pink-500">Skills</a></li>
+          <li><a href="#projects" class="hover:text-pink-500">Projects</a></li>
+          <li><a href="#contact" class="hover:text-pink-500">Contact</a></li>
+        </ul>
+      </div>
+       <div>
+        <h4 class="text-xl font-semibold mb-4 text-white">Connect</h4>
+        <div class="flex gap-4">
+          <a class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-pink-500 transition">🌐</a>
+          <a class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-pink-500 transition">💼</a>
+          <a class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-pink-500 transition">📧</a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="border-t border-gray-700 py-6 text-center text-gray-500">
+      © 2026 <span class="text-pink-500 font-semibold">Aditi Manchanda</span> All rights reserved.
+    </div>
+  </footer>
+    
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("contactForm");
+      const toast = document.getElementById("toast");
+    
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+    
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+    
+        if (!name || !email || !message) {
+          showToast("❌ Please fill all fields", "red");
+          return;
+        }
+    
+        try {
+          const response = await fetch("http://localhost:5000/api/contact", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, email, message }),
+          });
+    
+          const data = await response.json();
+    
+          if (response.ok) {
+            showToast("✅ Message sent successfully!", "green");
+            form.reset();
+          } else {
+            showToast("❌ " + data.msg, "red");
+          }
+    
+        } catch (error) {
+          showToast("❌ Server not running", "red");
+          console.error(error);
+        }
+      });
+    
+      // Show toast function with bounce + fade
+      function showToast(message, type = "green") {
+        toast.textContent = message;
+    
+        // Color
+        toast.style.backgroundColor = type === "red" ? "#ef4444" : type === "green" ? "#22c55e" : "#ec4899";
+    
+        // Show toast
+        toast.style.display = "block";
+        toast.style.transform = "translateY(2.5rem)";
+        toast.style.opacity = "0";
+    
+        // Trigger reflow for animation
+        toast.offsetHeight;
+    
+        // Bounce animation
+        toast.style.transition = "transform 0.5s ease-out, opacity 0.5s ease-out";
+        toast.style.transform = "translateY(0)";
+        toast.style.opacity = "1";
+    
+        // Hide after 3 seconds
+        setTimeout(() => {
+          toast.style.transform = "translateY(2.5rem)";
+          toast.style.opacity = "0";
+          setTimeout(() => toast.style.display = "none", 500);
+        }, 3000);
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login | Aditi Manchanda</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pinky: '#ec4899',
+            softpink: '#fff1f2',
+            gold: '#facc15',
+            darkgold: '#d4af37'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #fff1f2 0%, #fff7e6 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="p-4">
+
+  <div class="w-full max-w-md bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-pinky/30 transform transition-all hover:scale-[1.02]">
+
+    <!-- Logo / Title -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-extrabold">
+        <span class="text-pinky">Aditi</span> 
+        <span class="text-darkgold">Admin</span>
+      </h1>
+      <p class="text-black mt-2 text-sm">Enter your secret PIN to continue</p>
+    </div>
+
+    <!-- Form -->
+    <form id="pinForm" class="space-y-6">
+      <div>
+        <input
+          type="password"
+          id="pin"
+          placeholder="Enter PIN"
+          class="w-full px-5 py-4 text-center text-2xl tracking-widest rounded-xl border border-gray-300 focus:outline-none focus:border-pinky focus:ring-2 focus:ring-pinky/40 bg-white/60 transition"
+          maxlength="6"
+          required
+          autocomplete="off"
+          autofocus
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-gradient-to-r from-pinky to-darkgold text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg"
+      >
+        Login
+      </button>
+    </form>
+
+    <!-- Error message -->
+    <p id="errorMsg" class="text-red-600 text-center mt-5 font-medium hidden">
+      Incorrect PIN. Please try again.
+    </p>
+
+    <!-- Forgot hint (optional) -->
+    <p class="text-center text-gray-500 text-sm mt-6">
+      Forgot your PIN? Time to have a chat with yourself! —good luck! 🧠🔓
+    </p>
+
+  </div>
+
+  <script>
+    // ==========================================
+    //   PIN TO YOUR SECRET CODE
+    // ==========================================
+    const CORRECT_PIN = "123456";   // ← ← ← CHANGE THIS WHEN NEEDED !!
+
+    const form = document.getElementById('pinForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    // Form submit handler
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const pinInput = document.getElementById('pin');
+      const enteredPin = pinInput.value.trim();
+
+      if (enteredPin === CORRECT_PIN) {
+        // Success → save auth flag and go to dashboard
+        localStorage.setItem('admin-auth', 'true');
+        localStorage.setItem('admin-login-time', Date.now());
+        
+        // Clear input for security
+        pinInput.value = '';
+        
+        // Redirect to dashboard
+        window.location.href = 'dashboard.html';
+      } else {
+        // Wrong PIN
+        errorMsg.classList.remove('hidden');
+        pinInput.value = '';
+        pinInput.focus();
+
+        // Hide error after 4 seconds
+        setTimeout(() => {
+          errorMsg.classList.add('hidden');
+        }, 4000);
+      }
+    });
+
+    // If already logged in → skip login page
+    if (localStorage.getItem('admin-auth') === 'true') {
+      window.location.href = 'dashboard.html';
+    }
+
+    // Optional: Clear auth after some time (e.g. 24 hours)
+    const loginTime = localStorage.getItem('admin-login-time');
+    if (loginTime) {
+      const hoursPassed = (Date.now() - Number(loginTime)) / (1000 * 60 * 60);
+      if (hoursPassed > 24) {
+        localStorage.removeItem('admin-auth');
+        localStorage.removeItem('admin-login-time');
+      }
+    }
+  </script>
+
+</body>
+</html>

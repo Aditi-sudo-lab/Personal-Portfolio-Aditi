@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | Aditi Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pinky: '#ec4899',
+            softpink: '#fff1f2',
+            gold: '#facc15',
+            darkgold: '#d4af37'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-softpink via-white to-[#fff7e6] min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-black to-gray-900 text-white shadow-2xl z-50 flex flex-col">
+    <div class="p-6 border-b border-pinky/30">
+      <h1 class="text-2xl font-bold">
+        <span class="text-pinky">Aditi</span> Admin
+      </h1>
+      <p class="text-white text-sm mt-1">Welcome</p>
+    </div>
+
+    <nav class="flex-1 px-4 py-6 space-y-2">
+      <a href="dashboard.html" class="flex items-center px-4 py-3 rounded-lg bg-pinky/20 text-pinky font-medium">
+        <span class="mr-3">🏠</span> Dashboard
+      </a>
+      <a href="messages.html" class="flex items-center px-4 py-3 rounded-lg hover:bg-white/10 transition">
+        <span class="mr-3">✉️</span> Messages
+        <span id="unreadBadge" class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full hidden">0</span>
+      </a>
+      <a href="projects.html" class="flex items-center px-4 py-3 rounded-lg hover:bg-white/10 transition">
+        <span class="mr-3">🚀</span> Projects
+      </a>
+      <a href="about.html" class="flex items-center px-4 py-3 rounded-lg hover:bg-white/10 transition">
+        <span class="mr-3">⚡</span> Skills
+      </a>
+    </nav>
+
+    <div class="p-6 border-t border-gray-800">
+      <button onclick="logout()" class="w-full bg-red-600/80 hover:bg-red-700 text-white py-2 rounded-lg transition">
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="ml-64 p-8">
+
+    <!-- Header -->
+    <header class="flex justify-between items-center mb-10">
+      <h2 class="text-3xl font-bold text-gray-800">
+        Dashboard
+      </h2>
+      <div class="flex items-center gap-4">
+        <span class="text-black">Aditi Manchanda</span>
+        <div class="w-10 h-10 rounded-full bg-pinky text-white flex items-center justify-center font-bold">
+          A
+        </div>
+      </div>
+    </header>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+
+      <!-- Total Messages -->
+      <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-pinky/20 hover:border-pinky transition">
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Messages</h3>
+        <p id="totalMessages" class="text-4xl font-bold text-pinky">0</p>
+        <p class="text-sm text-gray-500 mt-1">All time</p>
+      </div>
+
+      <!-- Unread Messages -->
+      <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-gold/30 hover:border-gold transition">
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">Unread Messages</h3>
+        <p id="unreadMessages" class="text-4xl font-bold text-gold">0</p>
+        <p class="text-sm text-gray-500 mt-1">Need attention</p>
+      </div>
+
+      <!-- Latest Message -->
+      <div class="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg border border-pinky/20 hover:border-pinky transition">
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">Latest Message</h3>
+        <p id="latestMessageTime" class="text-xl font-medium text-gray-800">—</p>
+        <p class="text-sm text-gray-500 mt-1">Most recent</p>
+      </div>
+    </div>
+    <!-- Quick Actions -->
+    <section id="quick-actions" class="py-12 px-6 bg-white rounded-xl shadow-lg space-y-10">
+      <h2 class="text-3xl font-bold text-pink-500 mb-6">Quick Actions</h2>
+    
+      <div id="quick-actions-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 py-10">
+        <!-- Project Box -->
+        <div class="bg-white shadow-lg rounded-xl p-6 cursor-pointer hover:shadow-2xl transition" onclick="openModal('project')">
+          <h3 class="text-xl font-semibold text-pink-500">Manage Projects</h3>
+          <p class="text-gray-600 mt-2">Add, remove or edit projects here.</p>
+        </div>
+
+        <!-- Skills Box -->
+        <div class="bg-white shadow-lg rounded-xl p-6 cursor-pointer hover:shadow-2xl transition" onclick="openModal('skill')">
+          <h3 class="text-xl font-semibold text-gold">Manage Skills</h3>
+          <p class="text-gray-600 mt-2">Add or remove tech skills.</p>
+        </div>
+      </div>
+
+      <!-- ================== QUICK ACTION MODAL ================== -->
+        <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+          <div id="modalContent" class="bg-white dark:bg-gray-800 p-6 rounded-lg w-96 relative shadow-lg">
+            <!-- JS will inject content here -->
+            <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800">&times;</button>
+          </div>
+        </div>
+    </section>
+  </main>
+  
+  <!-- Include JS -->
+  <!-- <script src="../backend/models/projects.js"></script>
+  <script src="../backend/models/skills.js"></script> -->
+  <script>
+    function logout() {
+      localStorage.removeItem('admin-auth');
+      window.location.href = 'login.html';
+    }
+  
+    if (localStorage.getItem('admin-auth') !== 'true') {
+      window.location.href = 'login.html';
+    }
+  
+    // ================== DASHBOARD MESSAGE STATS ==================
+    async function loadDashboardStats() {
+      try {
+        const res = await fetch('http://localhost:5000/api/contact');
+        if (!res.ok) throw new Error("Failed");
+  
+        const messages = await res.json();
+  
+        const total = messages.length;
+        const unread = messages.filter(m => !m.isRead).length;
+        const latest = messages[messages.length - 1];
+  
+        document.getElementById('totalMessages').textContent = total;
+        document.getElementById('unreadMessages').textContent = unread;
+  
+        document.getElementById('latestMessageTime').textContent =
+          latest ? new Date(latest.createdAt).toLocaleString('en-IN') : '—';
+  
+        // Sidebar badge
+        const badge = document.getElementById('unreadBadge');
+        if (unread > 0) {
+          badge.textContent = unread;
+          badge.classList.remove('hidden');
+        } else {
+          badge.classList.add('hidden');
+        }
+  
+      } catch (err) {
+        console.error("Dashboard stats error:", err);
+      }
+    }
+  
+    window.addEventListener('load', loadDashboardStats);
+  
+    // ================== DASHBOARD QUICK ACTIONS MODAL ==================
+    function openModal(type) {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modalContent');
+      modal.classList.remove('hidden');
+  
+      if (type === 'project') {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-500 mb-4">Add Project</h2>
+          <input type="text" id="projectTitle" placeholder="Title" class="border p-2 rounded w-full mb-2">
+          <input type="text" id="projectTech" placeholder="Tech (comma)" class="border p-2 rounded w-full mb-2">
+          <input type="text" id="projectLink" placeholder="Link" class="border p-2 rounded w-full mb-4">
+          <button class="px-4 py-2 bg-pink-500 text-white rounded" onclick="saveProject()">Save</button>
+        `;
+      } else if (type === 'skill') {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-gold mb-4">Add Skill</h2>
+          <input type="text" id="skillName" placeholder="Skill Name" class="border p-2 rounded w-full mb-2">
+          <input type="number" id="skillPercent" placeholder="Skill %" class="border p-2 rounded w-full mb-4">
+          <button class="px-4 py-2 bg-gold text-black rounded" onclick="saveSkill()">Save</button>
+        `;
+      }
+    }
+  
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+  
+    // Save Project to localStorage & update projects page
+    async function saveProject() {
+      const title = document.getElementById('projectTitle').value;
+      const techInput = document.getElementById('projectTech').value;
+      const link = document.getElementById('projectLink').value;
+      if (!title || !techInput || !link) {
+        alert('Please fill all fields');
+        return;
+      }
+    
+      const tech = techInput.split(',').map(t => t.trim());
+    
+      const res = await fetch('http://localhost:5000/api/projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, tech, link })
+      });
+    
+      if (res.ok) {
+        alert('Project saved in database ✅');
+    
+        document.getElementById('projectTitle').value = '';
+        document.getElementById('projectTech').value = '';
+        document.getElementById('projectLink').value = '';
+
+        alert('Something went wrong ❌');
+        
+        closeModal();
+      }
+    }
+  
+    // Save Skill to localStorage & update about page
+    function saveSkill() {
+      const name = document.getElementById('skillName').value;
+      const percent = document.getElementById('skillPercent').value;
+  
+      const skills = JSON.parse(localStorage.getItem('skills') || '[]');
+      skills.push({ name, percent });
+      localStorage.setItem('skills', JSON.stringify(skills));
+  
+      alert('Skill saved!');
+      closeModal();
+      // Optionally refresh the about page if open
+      if (window.location.pathname.includes('about.html')) loadSkills();
+    }
+  
+    // Optional: Functions to render stored projects & skills dynamically
+    async function loadProjects() {
+      const projectsContainer = document.getElementById('projectsContainer');
+      if (!projectsContainer) return;
+    
+      const res = await fetch('http://localhost:5000/api/projects');
+      const projects = await res.json();
+    
+      projectsContainer.innerHTML = projects.map(p => `
+        <div class="p-4 border rounded mb-4">
+          <h3 class="font-semibold">${p.title}</h3>
+          <p>${p.tech.join(', ')}</p>
+          <a href="${p.link}" class="text-pink-500 underline" target="_blank">View</a>
+        </div>
+      `).join('');
+    }
+  
+    function loadSkills() {
+      const skillsContainer = document.getElementById('skillsContainer');
+      if (!skillsContainer) return;
+      const skills = JSON.parse(localStorage.getItem('skills') || '[]');
+      skillsContainer.innerHTML = skills.map(s => `
+        <div class="mb-2 flex justify-between">
+          <span>${s.name}</span>
+          <span>${s.percent}%</span>
+        </div>
+      `).join('');
+    }
+  
+    window.addEventListener('load', () => {
+     loadSkills();
+    });
+  </script>
+
+</body>
+</html>

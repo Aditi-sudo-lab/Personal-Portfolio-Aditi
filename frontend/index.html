@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aditi Manchanda | MERN Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Tailwind custom classes -->
+<style>
+  /* .skill-box{ */
+    /* @apply bg-white border-2 border-gold rounded-xl p-8 text-center font-semibold shadow hover:scale-105 transition; */
+  /* } */
+  /* .project-card{ */
+    /* @apply bg-softpink border-2 border-pinky rounded-2xl p-6 shadow-lg hover:scale-105 transition; */
+  /* } */
+  /* .project-card img{ */
+    /* @apply rounded-xl mb-4; */
+  /* } */
+  /* .project-card h3{ */
+    /* @apply text-xl font-bold text-pinky; */
+  /* } */
+  /* .project-card p{ */
+    /* @apply text-sm text-gray-600; */
+  /* } */
+  .perspective {
+    perspective: 1200px;
+  }
+  .rotate-y-neg-130deg {
+    transform: rotateY(-130deg);
+  }
+
+  .animate-fadeIn{
+    animation: fade 1.2s ease-in-out;
+  }
+
+  @keyframes fade{
+    from{ 
+     opacity:0; 
+     transform:translateY(30px)
+    }
+    to{
+     opacity:1; 
+     transform:translateY(0)
+    }
+  }
+  @keyframes pop {
+    0% { 
+      transform: scale(0.4); 
+      opacity: 0; 
+    }
+    80% { 
+      transform: scale(1.1); 
+      opacity: 1; 
+    }
+    100% { 
+      transform: scale(1); 
+    }
+  }
+  /* NAVBAR */
+  /* Navbar underline */
+  /* #underline {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   height: 3px;
+   background: #ec4899;
+   border-radius: 2px;
+   width: 0;
+   transition: all 0.3s ease;
+  }
+
+  .nav-link {
+   position: relative;
+  } */
+
+  /* SECTION SEPARATION LIKE GANESH SIR */
+  /* .section-wrap {
+    background: #000;
+    position: relative;
+  }
+  
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.08), 0 30px 80px rgba(0, 0, 0, 0.7);
+  } */
+
+  /* CARD CONTAINER */
+  .card {
+    position: relative;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .card .icon-container {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff00cc, #00dbde);
+  }
+  
+  .card .icon-container img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  
+  /* WATERFALL ANIMATION */
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.07) 0%, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.07) 100%);
+    background-size: 200% 200%;
+    animation: waterfall 3s linear infinite;
+    border-radius: 20px;
+    z-index: -1;
+  }
+  
+  @keyframes waterfall {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 200%; }
+  }
+  
+  /* NEON GLOW BORDER */
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ff00cc, #00dbde);
+    filter: blur(25px);
+    opacity: 0.4;
+    z-index: -2;
+    transition: all 0.6s ease-in-out;
+  }
+  
+  /* HOVER EFFECT */
+  .card:hover {
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  }
+  
+  .card:hover::after {
+    filter: blur(40px);
+    opacity: 0.7;
+  }
+  
+  /* TEXT STYLES */
+  .heading {
+    font-size: 26px;
+    font-weight: 800;
+    /* background: linear-gradient(90deg, #ff00cc, #00dbde); */
+    background: black;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .card p:not(.heading) {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+  }
+  
+  .card p:last-child {
+    color: #ff00cc;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  
+  /* ICON */
+  .card img {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* FOOTER */
+  /* Custom Tailwind Colors */
+  .softpink { background-color: #fff1f2; }
+  .pinky { color: #ec4899; }
+  
+  .gold { color: #facc15; }
+  ul {
+    list-style: none;
+  }
+  
+  .example-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .example-2 .icon-content {
+    margin: 0 10px;
+    position: relative;
+  }
+  .example-2 .icon-content .tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  .example-2 .icon-content:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    top: -50px;
+  }
+  .example-2 .icon-content a {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #4d4d4d;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+  .example-2 .icon-content a:hover {
+    box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+  }
+  .example-2 .icon-content a svg {
+    position: relative;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+  }
+  .example-2 .icon-content a:hover {
+    color: white;
+  }
+  .example-2 .icon-content a .filled {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #000;
+    transition: all 0.3s ease-in-out;
+  }
+  .example-2 .icon-content a:hover .filled {
+    height: 100%;
+  }
+  
+  .example-2 .icon-content a[data-social="linkedin"] .filled,
+  .example-2 .icon-content a[data-social="linkedin"] ~ .tooltip {
+    background-color: #0274b3;
+  }
+  
+  .example-2 .icon-content a[data-social="github"] .filled,
+  .example-2 .icon-content a[data-social="github"] ~ .tooltip {
+    background-color: #24262a;
+  }
+  .example-2 .icon-content a[data-social="instagram"] .filled,
+  .example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
+    background: linear-gradient(
+      45deg,
+      #405de6,
+      #5b51db,
+      #b33ab4,
+      #c135b4,
+      #e1306c,
+      #fd1f1f
+    );
+  }
+  .example-2 .icon-content a[data-social="youtube"] .filled,
+  .example-2 .icon-content a[data-social="youtube"] ~ .tooltip {
+    background-color: #ff0000;
+  }
+
+</style>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pinky: '#ec4899',
+            softpink: '#fff1f2',
+            gold: '#facc15'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-softpink text-black overflow-hidden">
+  <!-- PREMIUM LOADER -->
+  <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black">
+    <!-- Glow background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/20 via-black to-yellow-400/20 blur-3xl"></div>
+    <!-- Loader Card -->
+    <div class="relative z-10 flex flex-col items-center gap-6 p-10 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl animate-pulse">
+      <!-- Animated Ring -->
+      <div class="relative w-24 h-24">
+        <div class="absolute inset-0 rounded-full border-4 border-pink-500 border-t-transparent animate-spin"></div>
+        <div class="absolute inset-3 rounded-full border-4 border-yellow-400 border-b-transparent animate-spin [animation-direction:reverse]"></div>
+      </div>
+      <!-- Brand Text -->
+      <h1 class="text-3xl font-extrabold tracking-widest bg-gradient-to-r from-pink-500 to-yellow-400 bg-clip-text text-transparent">
+        ADITI
+      </h1>
+      <p class="text-gray-300 text-sm tracking-wider uppercase">
+        Loading Aditi's World...
+      </p>
+  
+    </div>
+  </div>
+
+  <!-- loader2 -->
+  <!-- THEME MATCHED PREMIUM LOADER -->
+  <!-- <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    ------------Soft glowing background------------
+    <div class="absolute inset-0 bg-gradient-to-r from-pink-400/30 via-transparent to-yellow-400/30 blur-3xl"></div>
+  
+    ------------Glass Loader Card------------
+    <div class="relative z-10 flex flex-col items-center gap-6 px-12 py-10 rounded-3xl bg-white/70 backdrop-blur-xl border border-pink-200 shadow-2xl">
+  
+      ------------Animated Dual Ring-------------
+      <div class="relative w-24 h-24">
+        <div class="absolute inset-0 rounded-full border-[5px] border-pink-500 border-t-transparent animate-spin"></div>
+        <div class="absolute inset-3 rounded-full border-[5px] border-[#d4af37] border-b-transparent animate-spin [animation-direction:reverse]"></div>
+      </div>
+  
+      -------------Name------------
+      <h1 class="text-3xl font-extrabold tracking-widest bg-gradient-to-r from-pink-500 to-[#d4af37] bg-clip-text text-transparent">
+        ADITI
+      </h1>
+  
+      -----------Subtitle------------
+      <p class="text-gray-600 text-sm tracking-wider uppercase">
+        MERN Web Developer
+      </p>
+    </div>
+  </div> -->
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0.5 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center bg-white/10 backdrop-blur-md rounded-xl shadow-lg">
+      <!-- Logo -->
+      <h1 class="text-2xl font-bold text-pink-500">ADITI</h1>
+      <!-- Desktop Links -->
+      <div class="hidden md:flex space-x-6 font-medium relative">
+        <a href="./index.html" class="nav-link text-pink-500 relative font-semibold">Home</a>
+        <a href="./about.html" class="nav-link text-black hover:text-pink-500 relative">About</a>
+        <a href="./projects.html" class="nav-link text-black hover:text-pink-500 relative">Projects</a>
+        <a href="./contact.html" class="nav-link text-black hover:text-pink-500 relative">Contact</a>
+        <a href="./cv.html" class="nav-link text-black hover:text-pink-500 relative">CV</a>
+        
+        <!-- CV Download Button -->
+        <a href="./assets/cv/Aditi_Manchanda_CV.pdf" download
+           class="px-4 py-2 bg-pink-500 text-white rounded-lg hover:scale-105 transition">
+          Download CV
+        </a>
+      </div>
+      
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button id="menu-btn" class="focus:outline-none">
+          <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-md rounded-xl px-6 py-4 mt-2">
+      <a href="#index" class="block py-2 text-black hover:text-pink-500">Home</a>
+      <a href="#about" class="block py-2 text-black hover:text-pink-500">About</a>
+      <a href="#projects" class="block py-2 text-black hover:text-pink-500">Projects</a>
+      <a href="#contact" class="block py-2 text-black hover:text-pink-500">Contact</a>
+      
+      <!-- CV Links -->
+      <a href="./cv.html" class="block py-2 text-black hover:text-pink-500">CV</a>
+      <a href="./assets/cv/Aditi_Manchanda_CV.pdf" download class="block py-2 text-pink-500 font-semibold">
+        Download CV
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="index" class="min-h-screen flex items-center">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+      <div class="animate-fadeIn">
+        <!-- <p class="text-gold font-semibold mb-2">Hello 👋</p> -->
+        <h1 class="text-4xl md:text-5xl font-bold">
+          I am a <span class="text-pinky" id="typing"></span>
+        </h1>
+        <p class="mt-6 text-gray-400">
+         I am Aditi Manchanda, a passionate web developer with a strong focus on building modern, 
+         responsive, and user-friendly websites. I have hands-on experience with HTML, CSS, Tailwind CSS,
+         JavaScript, and React for frontend development, along with backend expertise in Node.js and Express.js.
+         I enjoy turning ideas into functional digital experiences and continuously improving my skills with new technologies.
+        </p>
+  
+        <div class="mt-8 space-x-4">
+          <a href="#projects" class="px-6 py-3 bg-pinky text-white rounded-lg shadow hover:scale-105 transition">
+            View Work
+          </a>
+          <a href="#contact" class="px-6 py-3 border-2 border-gold text-gold rounded-lg hover:bg-gold hover:text-black transition">
+            Hire Me
+          </a>
+        </div>
+      </div>
+  
+      <div class="flex justify-center">
+        <div class="border-4 border-gold rounded-3xl p-2 hover:scale-105 transition h-[420px] w-[320px] overflow-hidden">
+          <img src="./assets/imgs/hero.jpeg" class="rounded-2xl w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+
+  <!-- ABOUT SECTION -->
+   <!-- py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6] -->
+  <section class="py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    <div class="section-inner">
+    <h2 class="text-center text-4xl font-bold mb-16">
+      I am <span class="text-pink-500">Modern</span>
+      <span class="text-[#d4af37]">Web Developer</span>
+    </h2>
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+      <!-- BOOK EFFECT -->
+      <div class="relative group perspective w-[300px] h-[400px]">
+        <!-- LEFT PAGE (IMAGE) -->
+        <div
+          class="absolute inset-0 bg-white rounded-xl overflow-hidden border-4 border-[#d4af37] shadow-xl origin-left transform transition-all duration-700 group-hover:rotate-y-neg-130deg">
+          <img src="./assets/imgs/about.jpg" class="w-full h-full object-cover" />
+        </div>
+        <!-- RIGHT PAGE (DETAILS) -->
+        <div
+          class="absolute inset-0 bg-white rounded-xl p-6 border-4 border-pink-400 shadow-xl opacity-0 scale-95 transition-all duration-700 group-hover:opacity-100 group-hover:scale-100">
+          <h3 class="text-xl font-bold text-pink-500 mb-4">About Me</h3>
+          <p class="text-black text-sm leading-6 mb-4">
+            I am a student of Class 11 and have completed a <span class="font-semibold text-[#d4af37]">MERN Stack Web Developer</span> 
+            course, with a strong command over both frontend and backend technologies. I have a deep interest in computers, 
+            which I pursue as my hobby, and I enjoy learning, building, and experimenting with new technologies.
+            <!-- hi, i'm aditi... currently i'm 15 years old and studing in class 11th... I love to play basketball and listen music in my free time. hope you like my profile. And feel free to contact me, anytime, anywhere...
+            i am always happy to help you. any query regarding web development or anything else you can message me.
+            i currently live in delhi, india. i am very passionate about web development and want to make my career in this field. 
+            as of now whatever i have learned id from my trainer Ganesh Dutt sir. He is a great mentor and good human being.
+            whatever i have achieved is because of him only.He don't teach us like a teacher but he guide us like a friend, more often like a elder brother.
+            He always motivate me to do better in my coding skills and always support me in my every decision. -->
+          </p>
+          <ul class="text-sm text-gray-700 space-y-2">
+            <li><b>Age:</b> 15</li>
+            <li><b>DOB:</b> 09 April 2010</li>
+            <li><b>Hobby:</b> Basketball, Music listning</li>
+          </ul>
+          <a href="#projects"
+             class="inline-block mt-6 px-5 py-2 rounded-lg bg-gradient-to-r from-pink-500 to-[#d4af37] text-white font-semibold shadow-md hover:scale-105 transition">
+            Resume
+          </a>
+        </div>
+      </div>
+  
+      <!-- TEXT SIDE -->
+      <div class="max-w-xl">
+        <h3 class="text-3xl font-semibold mb-6">
+          Turning <span class="text-pink-500">Ideas</span> into
+          <span class="text-[#d4af37]">Powerful</span> Websites
+
+        </h3>
+        <p class="text-gray-500 leading-8">
+          I build modern and scalable web applications with a strong focus on responsiveness and performance using the MERN stack.
+          Passionate about computers and technology, I love converting ideas into reliable digital products with clean, maintainable
+          code and intuitive design.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- PROJECTS -->
+  <section class="py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    <h2 class="text-center text-4xl font-bold mb-20">
+      <span class="text-pink-400">My</span>
+      <span class="text-[#d4af37]">Projects</span>
+    </h2>
+    <div class="max-w-6xl mx-auto space-y-28 px-6">
+  
+      <!-- PROJECT 1 -->
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <!-- TEXT -->
+        <div>
+          <h3 class="text-3xl font-semibold text-[#d4af37] mb-3">
+            The Taj Hotel
+          </h3>
+          <div class="flex gap-3 mb-4">
+            <span class="px-3 py-1 text-sm bg-pink-500 rounded">HTML</span>
+            <!-- <span class="px-3 py-1 text-sm bg-[#d4af37] text-black rounded">CSS</span> -->
+            <span class="px-3 py-1 text-sm bg-purple-500 rounded">Tailwind</span>
+            <span class="px-3 py-1 text-sm bg-blue-500 rounded">JS</span>
+
+          </div>
+          <p class="text-gray-900 leading-7 mb-6">
+            A real-world Taj Hotel website created to showcase interior of taj hotel.
+            This project highlights my frontend skills, UI structuring and
+            independent project handling capability.
+          </p>
+          <a href="./href projects/the taj.html" class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-[#d4af37] font-semibold hover:scale-105 transition">
+            Explore Now
+          </a>
+        </div>
+        <!-- LAPTOP -->
+        <div class="relative group">
+          <div class="bg-black rounded-xl border-4 border-[#d4af37] shadow-2xl p-3 transform group-hover:scale-105 transition duration-500">
+            <img src="./assets/imgs/The taj.jpeg" class="rounded-lg w-full h-full object-cover"/>
+          </div>
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-24 h-2 bg-[#d4af37] rounded-full"></div>
+        </div>
+      </div>
+  
+      <!-- PROJECT 2 -->
+      <div class="grid md:grid-cols-2 gap-14 items-center md:flex-row-reverse">
+        <!-- LAPTOP -->
+        <div class="relative group md:order-2">
+          <div class="bg-black rounded-xl border-4 border-pink-500 shadow-2xl p-3 transform group-hover:scale-105 transition duration-500 h-[260px] overflow-hidden">
+            <img src="./assets/imgs/Music.jpeg" class="rounded-lg" />
+          </div>
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-24 h-2 bg-pink-500 rounded-full"></div>
+        </div>
+        <!-- TEXT -->
+        <div class="md:order-1">
+          <h3 class="text-3xl font-semibold text-pink-400 mb-3">
+            The Music
+          </h3>
+          <div class="flex gap-3 mb-4">
+            <span class="px-3 py-1 text-sm bg-pink-500 rounded">HTML</span>
+            <span class="px-3 py-1 text-sm bg-[#d4af37] text-black rounded">CSS</span>
+            <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">JS</span>
+          </div>
+          <p class="text-gray-900 leading-7 mb-6">
+            A modern music landing page focusing on layout, hover effects,
+            transitions and responsive UI using Tailwind CSS.
+          </p>
+          <a href="./href projects/DJoz Music.html" class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-[#d4af37] to-pink-500 font-semibold hover:scale-105 transition">
+            Explore Now
+          </a>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+  <!-- SKILLS -->
+  <section class="py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    <h2 class="text-center text-4xl font-bold mb-16">
+      My <span class="text-pink-500">Skills</span>
+    </h2>
+  
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+  
+      <!-- SKILL CARD 1 -->
+      <div class="card">
+        <div class="icon-container">
+          <img src="https://ganeshdutt.netlify.app/developer2.png" alt="Frontend Icon">
+        </div>
+        <p class="heading">Frontend Development</p>
+        <p>Skilled in building responsive, modern and user-friendly interfaces using HTML, React, Tailwind CSS, and JavaScript.</p>
+        <p>Expert UI Focus</p>
+      </div>
+  
+      <!-- SKILL CARD 2 -->
+      <div class="card">
+        <div class="icon-container">
+          <img src="https://ganeshdutt.netlify.app/developer.webp" alt="Backend Icon">
+        </div>
+        <p class="heading">Backend <br> Development</p>
+        <p>Experience with Node.js, Express.js, creating REST APIs, and handling server-side logic efficiently.</p>
+        <p>Server-Side Logic</p>
+      </div>
+  
+      <!-- SKILL CARD 3 -->
+      <div class="card">
+        <div class="icon-container">
+          <img src="https://ganeshdutt.netlify.app/developer3.webp" alt="Full Stack Icon">
+        </div>
+        <p class="heading">MERN <br> Full Stack</p>
+        <p>Familiar with MongoDB, GitHub, REST APIs, and modern development tools for clean & scalable apps.</p>
+        <p>Full Stack Expertise</p>
+      </div>
+  
+    </div>
+  </section> <br>
+
+  <!-- MY ACHIEVEMENTS -->
+  <section class="py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    <h2 class="text-center text-4xl font-bold mb-20">
+      My <span class="text-pink-400">Achievements</span>
+    </h2>
+    <div class="flex justify-center px-6">
+      <!-- ACHIEVEMENT BOX -->
+      <div class="relative group w-[300px] md:w-[360px]">
+        <!-- BACK BORDER -->
+        <div
+          class="absolute top-6 left-6 w-full h-full border-4 border-[#d4af37] rounded-2xl transition-all duration-500 group-hover:top-0 group-hover:left-0 group-hover:border-pink-500">
+        </div>
+        <!-- IMAGE -->
+        <div class="relative bg-black rounded-2xl overflow-hidden shadow-2xl border-4 border-transparent group-hover:border-pink-500 transition-all duration-500">
+          <img src="./assets/imgs/4Achivers completion certificate.png" alt="Achievement" class="w-full h-200 object-cover rounded-2xl transform group-hover:scale-105 transition duration-500" />
+        </div>
+      </div>
+    </div>
+    <!-- TEXT -->
+    <p class="text-center text-black mt-12 max-w-xl mx-auto leading-7">
+      Recognized for excellence in web development and modern UI practices.
+      These achievements reflect my dedication to continuous learning and
+      real-world project implementation.
+    </p>
+  </section>
+  
+  <!-- CONTACT -->
+   <!-- py-24 bg-gradient-to-br from-pink-50 via-white to-yellow-50 -->
+  <section class="py-24 bg-gradient-to-br from-pink-50 via-white to-yellow-50">
+    <h2 class="text-center text-4xl font-bold text-black mb-16">
+      CONTACT <span class="text-yellow-500">ME</span>
+    </h2>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-6">
+      <!-- LEFT : FORM CARD -->
+      <div class="relative rounded-3xl border-2 border-yellow-400 bg-white p-10 shadow-xl overflow-hidden">
+        <h3 class="text-2xl text-pink-500 mb-8 font-semibold">
+         Let's connect — send me a message 🚀
+        </h3>
+        <!-- FORM -->
+        <form id="contactForm" class="space-y-8 transition-all duration-700">
+          <input type="text" name="message" placeholder="Your message"
+            class="w-full bg-transparent border-b border-yellow-400 text-gray-700 focus:outline-none py-2"> <br>
+          <input type="text" name="name" placeholder="Your name"
+            class="w-full bg-transparent border-b border-yellow-400 text-gray-700 focus:outline-none py-2"> <br>
+          <input type="email" name="email" placeholder="Your email"
+            class="w-full bg-transparent border-b border-yellow-400 text-gray-700 focus:outline-none py-2"> <br>
+          <button type="submit"
+            class="mt-6 bg-yellow-400 text-white px-8 py-3 rounded-xl font-semibold hover:bg-pink-500 transition">
+            Send
+          </button>
+        </form>
+        <div id="thankYou" class="absolute inset-0 flex flex-col items-center justify-center text-center bg-white opacity-0 pointer-events-none transition-all duration-700 scale-75 translate-y-10">
+          <div class="w-24 h-24 bg-gradient-to-r from-pink-500 to-yellow-400 rounded-full flex items-center justify-center mb-6 text-white text-4xl animate-[pop_0.6s_ease-out_forwards]">
+            ✉️
+          </div>
+          <h4 class="text-2xl text-gray-800 font-semibold mb-2">
+            Message Sent Successfully
+          </h4>
+          <p class="text-gray-600">I'll get back to you soon ✨</p>
+        </div>
+      </div>
+
+      <!-- RIGHT : IMAGE -->
+      <div class="rounded-3xl border-2 border-pink-500 overflow-hidden shadow-xl h-[550px]">
+        <img src="./assets/imgs/contact.jpg"
+          class="w-full h-full object-cover hover:scale-105 transition duration-700">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="bg-black text-gray-300 mt-32">
+    <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-12">
+      <div>
+        <h3 class="text-3xl font-bold text-pink-500 mb-4">
+          Aditi <span class="text-yellow-400">Manchanda</span> 
+        </h3>
+        <p class="leading-7 text-gray-400">
+          MERN Stack Web Developer building modern, responsive
+          and scalable web applications with clean UI & smooth UX.
+        </p>
+      </div>
+  
+      <div>
+        <h4 class="text-xl font-semibold mb-4 text-white">Quick Links</h4>
+        <ul class="space-y-3">
+          <li><a href="#about" class="hover:text-pink-500">About</a></li>
+          <li><a href="#skills" class="hover:text-pink-500">Skills</a></li>
+          <li><a href="#projects" class="hover:text-pink-500">Projects</a></li>
+          <li><a href="#contact" class="hover:text-pink-500">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xl font-semibold mb-4 text-white">Connect</h4> <br><br>
+        <div class="flex gap-4">
+          <ul class="example-2">
+            <li class="icon-content">
+              <a
+                href="https://linkedin.com/"
+                aria-label="LinkedIn"
+                data-social="linkedin"
+              >
+                <div class="filled"></div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-linkedin"
+                  viewBox="0 0 16 16"
+                  xml:space="preserve">
+                  <path
+                    d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </a>
+              <div class="tooltip">LinkedIn</div>
+            </li>
+            <li class="icon-content">
+              <a href="https://www.github.com/" aria-label="GitHub" data-social="github">
+                <div class="filled"></div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-github"
+                  viewBox="0 0 16 16"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </a>
+              <div class="tooltip">GitHub</div>
+            </li>
+            <li class="icon-content">
+              <a
+                href="https://www.instagram.com/"
+                aria-label="Instagram"
+                data-social="instagram"
+              >
+                <div class="filled"></div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-instagram"
+                  viewBox="0 0 16 16"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </a>
+              <div class="tooltip">Instagram</div>
+            </li>
+            <li class="icon-content">
+              <a href="https://youtube.com/" aria-label="Youtube" data-social="youtube">
+                <div class="filled"></div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-youtube"
+                  viewBox="0 0 16 16"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </a>
+              <div class="tooltip">Youtube</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+    </div>
+
+    <div class="border-t border-gray-700 py-6 text-center text-gray-500 flex items-center justify-center gap-2">
+      © 2026 <span class="text-pink-500 font-semibold">Aditi Manchanda</span> All rights reserved.
+      <button id="adminLockBtn" class="text-pink-500 hover:text-gold transition text-xl ml-2" title="Admin Panel">
+        <i class="fa-solid fa-lock"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- ==================== ADMIN LOGIN MODAL ==================== -->
+  <div id="adminModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999] hidden admin-modal">
+    <div class="bg-white/95 backdrop-blur-xl rounded-2xl p-8 w-full max-w-md mx-4 shadow-2xl border border-pinky/30">
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-bold">
+          <span class="text-pinky">Aditi</span> Admin Panel
+        </h2>
+        <p class="text-gray-600 mt-2">Enter secret PIN</p>
+      </div>
+
+      <form id="adminPinForm" class="space-y-6">
+        <input
+          type="password"
+          id="adminPin"
+          placeholder="••••••"
+          class="w-full px-5 py-4 text-center text-2xl tracking-widest rounded-xl border border-gray-300 focus:outline-none focus:border-pinky focus:ring-2 focus:ring-pinky/40"
+          maxlength="6"
+          required
+          autofocus
+        />
+
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-pinky to-darkgold text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg"
+        >
+          Login to Admin
+        </button>
+      </form>
+
+      <p id="adminError" class="text-red-600 text-center mt-4 font-medium hidden">
+        Wrong PIN, Forgot your PIN? Time to have a chat with yourself! —good luck! 🧠🔓
+      </p>
+
+      <button onclick="closeAdminModal()" class="block mx-auto mt-6 text-gray-500 hover:text-pinky">
+        Close
+      </button>
+    </div>
+  </div>
+  
+  <!-- JS -->
+  <script>
+  // ===== 4 SECOND LOADER =====
+  window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+
+    setTimeout(() => {
+      loader.classList.add("opacity-0", "scale-95", "transition-all", "duration-700");
+      document.body.classList.remove("overflow-hidden");
+
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 800);
+    }, 4000); // 4 seconds
+  });
+
+  // ===== Typing effect =====
+  const text = "MERN Web Developer";
+  let index = 0;
+
+  function typeEffect() {
+    if (index < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, 120);
+    }
+  }
+  window.onload = typeEffect;
+
+  // ===== Contact form =====
+  const form = document.getElementById("contactForm");
+  const thankYou = document.getElementById("thankYou");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch("http://localhost:5000/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.get("name"),
+            email: formData.get("email"),
+            message: formData.get("message"),
+          }),
+        });
+
+        if (!res.ok) return;
+
+        // Hide form smoothly
+        form.classList.add("opacity-0", "scale-90", "pointer-events-none");
+
+        // Show thank you smoothly
+        setTimeout(() => {
+          thankYou.classList.remove(
+            "opacity-0",
+            "scale-75",
+            "translate-y-10",
+            "pointer-events-none"
+          );
+          thankYou.classList.add("opacity-100", "scale-100", "translate-y-0");
+        }, 400);
+
+        form.reset();
+      } catch (err) {
+        console.error("Server error", err);
+      }
+    });
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    // ===== ADMIN LOGIN MODAL LOGIC =====
+    const adminModal = document.getElementById("adminModal");
+    const adminLockBtn = document.getElementById("adminLockBtn");
+    const adminError = document.getElementById("adminError");
+    const adminPinForm = document.getElementById("adminPinForm");
+    const adminPinInput = document.getElementById("adminPin");
+  
+    const SECRET_PIN = "123456";
+  
+    adminLockBtn.addEventListener("click", () => {
+      adminModal.classList.remove("hidden");
+      adminPinInput.focus();
+    });
+  
+    adminPinForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+  
+      if (adminPinInput.value.trim() === SECRET_PIN) {
+        localStorage.setItem("admin-auth", "true");
+        localStorage.setItem("admin-login-time", Date.now());
+  
+        window.location.href = "/dashboard.html";
+      } else {
+        adminError.classList.remove("hidden");
+        adminPinInput.value = "";
+  
+        setTimeout(() => adminError.classList.add("hidden"), 3000);
+      }
+    });
+  
+    typeEffect();
+  });
+</script>
+</body>
+</html>

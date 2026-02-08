@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Expense Tracker Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background: #eef1f7; padding: 20px; }
+.container { max-width: 1150px; margin: auto; }
+/* HEADER */
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+header h1 { font-size: 28px; font-weight: 700; background: linear-gradient(90deg, #4f46e5, #7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* TOP BUTTONS */
+.top-btns button { padding: 10px 14px; border: none; border-radius: 6px; font-size: 14px; margin-left: 8px; cursor: pointer; transition: 0.3s; }
+.budget-btn { background: #7c3aed; color: #fff; }
+.budget-btn:hover { background:#6d28d9; }
+.export-btn { background:#10b981; color:#fff; }
+.export-btn:hover {background:#0d9473;}
+.filter-btn { background:#f59e0b; color:#fff; }
+.filter-btn:hover {background:#d97706;}
+/* SUMMARY */
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 18px; }
+.card { background: #fff; padding: 18px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card h3 { font-size: 14px; color: #6b7280; }
+.card h2 { font-size: 22px; font-weight: 700; margin-top: 6px; }
+/* FORM */
+.form-box { background: #fff; padding: 18px; border-radius: 12px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.form-box input, .form-box select, .form-box button { width: 100%; padding: 12px; margin-top: 8px; border-radius: 6px; border: 1px solid #d1d5db; }
+.form-box button { background:#4f46e5; color:#fff; font-weight:600; cursor:pointer; border:none; }
+.form-box button:hover {background:#4338ca;}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+/* TABLE */
+table { width: 100%; background:#fff; border-radius: 12px; overflow: hidden; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+th { background:#4f46e5; color:#fff; padding:14px; }
+td { padding:12px; text-align:center; border-bottom:1px solid #e5e7eb; }
+tr:hover { background:#eff6ff; }
+.edit { background:#10b981; color:#fff; border:none; padding:6px 10px; border-radius:5px;}
+.delete {background:#ef4444; color:#fff; border:none; padding:6px 10px; border-radius:5px;}
+.edit:hover {background:#059669;}
+.delete:hover {background:#dc2626;}
+/* BUDGET POPUP */
+#budgetBox { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; padding:20px; width:280px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.2); }
+#budgetBox input { width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; }
+#budgetBox button { width:100%; margin-top:10px; padding:10px; background:#7c3aed; color:#fff; border:none; border-radius:6px; }
+@media(max-width:768px){ .grid-2 {grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Expense Tracker Pro</h1>
+<div class="top-btns">
+<button class="budget-btn" onclick="openBudget()">Set Budget</button>
+<button class="filter-btn">Filter</button>
+<button class="export-btn" onclick="exportData()">Export</button>
+</div>
+</header>
+
+<section class="summary">
+<div class="card"><h3>Total Spent</h3><h2>₹ <span id="totalAmt">0</span></h2></div>
+<div class="card"><h3>Highest Expense</h3><h2>₹ <span id="highAmt">0</span></h2></div>
+<div class="card"><h3>Lowest Expense</h3><h2>₹ <span id="lowAmt">0</span></h2></div>
+<div class="card"><h3>Total Transactions</h3><h2 id="countTx">0</h2></div>
+</section>
+
+<div class="grid-2">
+<div class="form-box">
+<h3>Add New Expense</h3>
+<input type="text" id="title" placeholder="Expense name">
+<input type="number" id="amount" placeholder="Amount">
+<select id="category">
+<option>Food</option>
+<option>Transport</option>
+<option>Shopping</option>
+<option>Business</option>
+<option>Investment</option>
+<option>Other</option>
+</select>
+<input type="date" id="date">
+<button onclick="addExpense()">Save Expense</button>
+</div>
+
+<div>
+<table>
+<thead>
+<tr>
+<th>Title</th>
+<th>Amount</th>
+<th>Category</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="tableData"></tbody>
+</table>
+</div>
+</div>
+
+<!-- BUDGET POPUP -->
+<div id="budgetBox">
+<h3>Set Monthly Budget</h3>
+<input type="number" id="budgetInput" placeholder="Enter budget">
+<button onclick="saveBudget()">Save</button>
+</div>
+</div>
+
+<script>
+let expenses = JSON.parse(localStorage.getItem("exp")) || [];
+let budget = localStorage.getItem("budget") || 0;
+let editIndex = -1;
+
+function openBudget(){ budgetBox.style.display = "block"; }
+
+function saveBudget(){
+  budget = +budgetInput.value;
+  localStorage.setItem("budget", budget);
+  alert("Budget saved: ₹" + budget);
+  budgetBox.style.display="none";
+  render();
+}
+
+function addExpense() {
+  let t = title.value, a = +amount.value, c = category.value, d = date.value;
+  if(!t || !a || !d) return alert("Fill all fields!");
+  let obj = {t, a, c, d};
+  editIndex === -1 ? expenses.push(obj) : expenses[editIndex] = obj;
+  editIndex = -1;
+  localStorage.setItem("exp", JSON.stringify(expenses));
+  title.value = amount.value = date.value = "";
+  render();
+}
+
+function render() {
+  let html = "";
+  let total = 0;
+  let arr = expenses.map(x => x.a);
+  expenses.forEach((x,i) => {
+    total += x.a;
+    html += `<tr>
+<td>${x.t}</td>
+<td>₹${x.a}</td>
+<td>${x.c}</td>
+<td>${x.d}</td>
+<td>
+<button class="edit" onclick="edit(${i})">Edit</button>
+<button class="delete" onclick="del(${i})">Del</button>
+</td>
+</tr>`;
+  });
+  tableData.innerHTML = html;
+  totalAmt.innerText = total;
+  countTx.innerText = expenses.length;
+  highAmt.innerText = arr.length ? Math.max(...arr) : 0;
+  lowAmt.innerText = arr.length ? Math.min(...arr) : 0;
+
+  if(budget){
+    total > budget ? totalAmt.style.color="red" : totalAmt.style.color="green";
+  }
+}
+
+function edit(i) {
+  let e = expenses[i];
+  title.value=e.t; amount.value=e.a; category.value=e.c; date.value=e.d;
+  editIndex = i;
+}
+
+function del(i) {
+  expenses.splice(i,1);
+  localStorage.setItem("exp", JSON.stringify(expenses));
+  render();
+}
+
+function exportData() {
+  let dataStr = "Title,Amount,Category,Date\n";
+  expenses.forEach(e => { dataStr += `${e.t},${e.a},${e.c},${e.d}\n`; });
+  let blob = new Blob([dataStr], { type: 'text/csv' });
+  let url = URL.createObjectURL(blob);
+  let a = document.createElement("a");
+  a.href = url;
+  a.download = "expenses.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+render();
+</script>
+</body>
+</html>

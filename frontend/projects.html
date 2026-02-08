@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aditi Manchanda | Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pinky: '#ec4899',
+            gold: '#d4af37'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-softpink text-black">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0.5 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center bg-white/10 backdrop-blur-md rounded-xl shadow-lg">
+      <!-- Logo -->
+      <h1 class="text-2xl font-bold text-pink-500">ADITI</h1>
+      <!-- Desktop Links -->
+      <div class="hidden md:flex space-x-6 font-medium relative">
+        <a href="./index.html" class="nav-link text-black hover:text-pink-500 relative">Home</a>
+        <a href="./about.html" class="nav-link text-black hover:text-pink-500 relative">About</a>
+        <a href="./projects.html" class="nav-link text-pink-500 relative font-semibold">Projects</a>
+        <a href="./contact.html" class="nav-link text-black hover:text-pink-500 relative">Contact</a>
+        <a href="./cv.html" class="nav-link text-black hover:text-pink-500 relative">CV</a>
+        
+        <!-- CV Download Button -->
+        <a href="./assets/cv/Aditi_Manchanda_CV.pdf" download
+           class="px-4 py-2 bg-pink-500 text-white rounded-lg hover:scale-105 transition">
+          Download CV
+        </a>
+      </div>
+      
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button id="menu-btn" class="focus:outline-none">
+          <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-md rounded-xl px-6 py-4 mt-2">
+      <a href="./index.html" class="block py-2 text-black hover:text-pink-500">Home</a>
+      <a href="./about.html" class="block py-2 text-pink-500">About</a>
+      <a href="./projects.html" class="block py-2 text-black hover:text-pink-500">Projects</a>
+      <a href="./contact.html" class="block py-2 text-black hover:text-pink-500">Contact</a>
+      
+      <!-- CV Links -->
+      <a href="./cv.html" class="block py-2 text-black hover:text-pink-500">CV</a>
+      <a href="./assets/cv/Aditi_Manchanda_CV.pdf" download class="block py-2 text-pink-500 font-semibold">
+        Download CV
+      </a>
+    </div>
+  </nav>
+  
+  <!-- PROJECTS SECTION -->
+  <section class="py-24 bg-gradient-to-br from-[#fff0f6] via-white to-[#fff7e6]">
+    <h2 class="text-center text-4xl font-bold mb-20">
+      My <span class="text-pink-500">Projects</span>
+    </h2>
+  
+    <div class="max-w-6xl mx-auto space-y-28 px-6">
+  
+      <!-- PROJECT 1 -->
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <img src="./assets/imgs/The taj.jpeg" class="rounded-2xl shadow-xl border-4 border-gold">
+        <div>
+          <h3 class="text-3xl font-semibold text-gold mb-4">The Taj Hotel</h3>
+          <div class="flex gap-3 mb-4">
+              <span class="px-3 py-1 text-sm bg-pink-500 rounded">HTML</span>
+              <span class="px-3 py-1 text-sm bg-[#d4af37] text-black rounded">Tailwind CSS</span>
+              <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">JS</span>
+            </div>
+          <p class="text-black leading-8 mb-6">
+            The Taj Hotel website is a modern and responsive luxury hotel platform designed to showcase the hotel's elegance, services, 
+            and accommodations. It features a hero section with a booking form, detailed descriptions of the hotel's highlights, a gallery
+            of images, and an overview of services like travel planning, catering, rooms, laundry, and more. Visitors can view different 
+            room types with pricing and book directly, explore the hotel's location via a map, and learn about gift hampers.
+          </p>
+          <a href="./href projects/the taj.html" class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-gold text-white font-semibold hover:scale-105 transition">
+            Explore Now
+          </a>
+        </div>
+      </div>
+  
+      <!-- PROJECT 2 (ZIG-ZAG) -->
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <div class="md:order-2">
+          <img src="./assets/imgs/Music.jpeg" class="rounded-2xl shadow-xl border-4 border-pink-500">
+        </div>
+        <div class="md:order-1">
+          <h3 class="text-3xl font-semibold text-pink-500 mb-4">DJoz Music</h3>
+          <div class="flex gap-3 mb-4">
+              <span class="px-3 py-1 text-sm bg-pink-500 rounded">HTML</span>
+              <span class="px-3 py-1 text-sm bg-[#d4af37] text-black rounded">CSS</span>
+              <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">Strong JS</span>
+            </div>
+          <p class="text-black leading-8 mb-6">
+            Experience the latest singles, live events, and music videos from top DJs. Stay updated with upcoming shows, 
+            explore exclusive tracks, and feel the beat anytime, anywhere.
+          </p>
+          <a href="./href projects/DJoz Music.html" class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-gold to-pink-500 text-white font-semibold hover:scale-105 transition">
+            Explore Now
+          </a>
+        </div>
+      </div>
+  
+      <!-- PROJECT 3 -->
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <img src="./assets/imgs/BorgDesk.jpeg" class="rounded-2xl shadow-xl border-4 border-gold">
+        <div>
+          <h3 class="text-3xl font-semibold text-gold mb-4">BorgDesk Website</h3>
+          <div class="flex gap-3 mb-4">
+              <span class="px-3 py-1 text-sm bg-pink-500 rounded">HTML</span>
+              <span class="px-3 py-1 text-sm bg-[#d4af37] text-black rounded">CSS</span>
+              <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">JS</span>
+            </div>
+          <p class="text-black leading-8 mb-6">
+            BORG Desk ERP is a cloud-based business automation solution that streamlines operations, enhances team collaboration, 
+            and provides real-time insights. From Sales & CRM to Accounts, Inventory, HR, and Multi-branch management, it empowers 
+            businesses to improve productivity, customer satisfaction, and profitability.
+          </p>
+          <a href="./href projects/BorgDesk.html" class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-gold text-white font-semibold hover:scale-105 transition">
+            Explore Now
+          </a>
+        </div>
+      </div>
+  
+      <!-- PROJECT 4 (ZIG-ZAG) -->
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <div class="md:order-2">
+          <img src="./assets/imgs/Aditi's Sports arena.png" class="rounded-2xl shadow-xl border-4 border-pink-500">
+        </div>
+        <div class="md:order-1">
+          <h3 class="text-3xl font-semibold text-pink-500 mb-4">Aditi Sports Arena</h3>
+          <div class="flex gap-3 mb-4">
+              <span class="px-3 py-1 text-sm bg-pink-500 rounded">HTML</span>
+              <span class="px-3 py-1 text-sm bg-[#d4af37] text-black rounded">Tailwind CSS</span>
+              <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">JS</span>
+            </div>
+          <p class="text-black leading-8 mb-6">
+            This is a modern, responsive sports arena website highlighting your gym, basketball, and other sports facilities. 
+            It has a strong visual design, smooth scroll UX, hover effects, and a structured layout suitable for a personal brand 
+            or sports business.
+          </p>
+          <a href="./href projects/Aditi Sports Arena.html" class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-gold to-pink-500 text-white font-semibold hover:scale-105 transition">
+            Explore Now
+          </a>
+        </div>
+      </div>
+  
+      <!-- PROJECT 5 -->
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <img src="./assets/imgs/AI Chatbot (ChatGPT).png" class="rounded-2xl shadow-xl border-4 border-gold">
+        <div>
+          <h3 class="text-3xl font-semibold text-gold mb-4">AI Chatbot (ChatGPT)</h3>
+          <div class="flex gap-3 mb-4">
+              <span class="px-3 py-1 text-sm bg-pink-500 rounded">React</span>
+              <span class="px-3 py-1 text-sm bg-[#d4af37] text-black rounded">Tailwind CSS</span>
+              <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">Strong JS</span>
+              <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">Backend</span>
+            </div>
+          <p class="text-black leading-8 mb-6">
+            This is a dark-themed ChatGPT clone with a vertical sidebar, chat area, input box, and top navbar. 
+            It supports sending messages, AI replies, chat history, and smooth animations, making it interactive, responsive, 
+            and user-friendly.
+          </p>
+          <a href="./href projects/AI Chatbot (ChatGPT).html" class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-gold text-white font-semibold hover:scale-105 transition">
+            Explore Now
+          </a>
+        </div>
+      </div>
+  
+      <!-- PROJECT 6 (ZIG-ZAG) -->
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <div class="md:order-2">
+          <img src="./assets/imgs/Feedback App.jpeg" class="rounded-2xl shadow-xl border-4 border-pink-500">
+        </div>
+        <div class="md:order-1">
+          <h3 class="text-3xl font-semibold text-pink-500 mb-4">Feedback App</h3>
+          <div class="flex gap-3 mb-4">
+              <span class="px-3 py-1 text-sm bg-pink-500 rounded">React</span>
+              <span class="px-3 py-1 text-sm bg-[#d4af37] text-black rounded">Tailwind CSS</span>
+              <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">Strong JS</span>
+              <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">Backend</span>
+            </div>
+          <p class="text-black leading-8 mb-6">
+            This is a feedback form website with an admin login system protected by a PIN. Users can submit feedback, 
+            and the admin can log in to view and manage responses securely. It's simple, interactive, and user-friendly.
+          </p>
+          <a href="" class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-gold to-pink-500 text-white font-semibold hover:scale-105 transition">
+            Explore Now
+          </a>
+        </div>
+      </div>
+      
+      <!-- PROJECT 7 -->
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <img src="./assets/imgs/expence tarcker.png" class="rounded-2xl shadow-xl border-4 border-gold">
+        <div>
+          <h3 class="text-3xl font-semibold text-gold mb-4">Expence Tracker</h3>
+          <div class="flex gap-3 mb-4">
+              <span class="px-3 py-1 text-sm bg-pink-500 rounded">HTML</span>
+              <span class="px-3 py-1 text-sm bg-[#d4af37] text-black rounded">CSS</span>
+              <span class="px-3 py-1 text-sm bg-yellow-400 text-black rounded">Strong JS</span>
+            </div>
+          <p class="text-black leading-8 mb-6">
+            This is an Expense Tracker Pro web app to manage personal expenses. Users can add, edit, delete expenses, 
+            set a monthly budget, view summaries like total spent, highest/lowest expense, and total transactions, and export data as CSV. 
+            It's interactive, responsive, and stores data in local storage for persistence.
+          </p>
+          <a href="./href projects/Expence Tracker.html" class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-gold text-white font-semibold hover:scale-105 transition">
+            Explore Now
+          </a>
+        </div>
+      </div>
+    </div>
+    <form id="projectForm" class="mb-6 flex flex-col gap-3 max-w-md">
+      <input id="projectTitle" type="text" placeholder="Project Title" required class="p-2 border rounded">
+      <input id="projectTech" type="text" placeholder="Technologies (comma separated)" required class="p-2 border rounded">
+      <input id="projectLink" type="url" placeholder="Project Link" required class="p-2 border rounded">
+      <button type="submit" class="px-4 py-2 bg-pink-500 text-white rounded">Add Project</button>
+    </form>
+    <!-- Dynamic Projects Container -->
+    <div id="projectsContainer" class="max-w-6xl mx-auto space-y-28 px-6">
+      <!-- JS will dynamically add projects here -->
+    </div>
+  </section>
+  
+  
+  <!-- FOOTER -->
+  <footer id="footer" class="bg-black text-gray-300 mt-32">
+    <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-12">
+      <div>
+        <h3 class="text-3xl font-bold text-pink-500 mb-4">
+          Aditi <span class="text-yellow-400">Manchanda</span>
+        </h3>
+        <p class="leading-7 text-gray-400">
+          MERN Stack Web Developer building modern, responsive
+          and scalable web applications with clean UI & smooth UX.
+        </p>
+      </div>
+  
+      <div>
+        <h4 class="text-xl font-semibold mb-4 text-white">Quick Links</h4>
+        <ul class="space-y-3">
+          <li><a href="#about" class="hover:text-pink-500">About</a></li>
+          <li><a href="#skills" class="hover:text-pink-500">Skills</a></li>
+          <li><a href="#projects" class="hover:text-pink-500">Projects</a></li>
+          <li><a href="#contact" class="hover:text-pink-500">Contact</a></li>
+        </ul>
+      </div>
+       <div>
+        <h4 class="text-xl font-semibold mb-4 text-white">Connect</h4>
+        <div class="flex gap-4">
+          <a class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-pink-500 transition">🌐</a>
+          <a class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-pink-500 transition">💼</a>
+          <a class="w-12 h-12 flex items-center justify-center bg-gray-800 rounded-xl hover:bg-pink-500 transition">📧</a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="border-t border-gray-700 py-6 text-center text-gray-500">
+      © 2026 <span class="text-pink-500 font-semibold">Aditi Manchanda</span> All rights reserved.
+    </div>
+  </footer>
+
+  <!-- <script src="./js/project.js"></script> -->
+  <script>
+    async function loadProjects() {
+      try {
+        const res = await fetch('http://localhost:5000/api/projects'); // backend API
+        if (!res.ok) throw new Error("Failed to fetch projects");
+      
+        const projects = await res.json();
+      
+        const container = document.getElementById('projectsContainer');
+        container.innerHTML = ''; // reset
+      
+        projects.forEach(p => {
+          container.innerHTML += `
+            <div class="grid md:grid-cols-2 gap-14 items-center">
+              <div>
+                <h3 class="text-3xl font-semibold text-gold mb-4">${p.title}</h3>
+                <div class="flex gap-3 mb-4">
+                  ${p.tech.map(t => `<span class="px-3 py-1 text-sm bg-pink-500 rounded">${t}</span>`).join('')}
+                </div>
+                <a href="${p.link}" target="_blank"
+                  class="inline-block px-6 py-3 rounded-lg bg-pink-500 text-white">
+                  Explore Now
+                </a>
+              </div>
+            </div>
+          `;
+        });
+      
+      } catch (err) {
+        console.error("Error loading projects:", err);
+      }
+    }
+    window.addEventListener('load', loadProjects);
+  </script>
+
+</body>
+</html>

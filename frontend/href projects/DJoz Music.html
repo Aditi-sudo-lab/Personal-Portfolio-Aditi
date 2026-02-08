@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <style>
+   /* RESET */
+   *, *::before, *::after {
+       box-sizing: border-box;
+      }
+   body {
+       margin: 0;
+       font-family: 'Karla', sans-serif;
+       background: #fff;
+       color: #111;
+       line-height: 1.5;
+       overflow-x: hidden;
+      }
+   a {
+       color: inherit;
+       text-decoration: none;
+      }
+      ul {
+       list-style: none;
+       padding-left: 0;
+       margin: 0;
+      }
+   /* VARIABLES */
+     :root {
+       --purple: #6200ee;
+       --purple-dark: #3a00b7;
+       --white: #fff;
+       --transition: all 0.3s ease;
+       --max-width-large: 1400px;
+       --container-padding: 16px;
+      }
+   /* COMMON CONTAINERS */
+     .container {
+       width: 100%;
+       max-width: var(--max-width-large);
+       margin-left: auto;
+       margin-right: auto;
+       padding-left: var(--container-padding);
+       padding-right: var(--container-padding);
+      }
+   /* HEADER */
+      header {
+           /* position: sticky; */
+           top: 0;
+           z-index: 1000;
+           background: rgba(98, 0, 238, 0.85);
+           backdrop-filter: saturate(180%) blur(16px);
+           box-shadow: 0 2px 12px rgb(98 0 238 / 0.25);
+          }
+      .header-inner {
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           padding: 12px 24px;
+          }
+      .logo {
+           font-family: 'Pacifico', cursive;
+           font-weight: 700;
+           font-size: 1.8rem;
+           color: var(--white);
+           letter-spacing: -0.05em;
+          }
+   /* NAVIGATION */
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      nav a {
+        color: var(--white);
+        font-weight: 600;
+        font-size: 0.9rem;
+        position: relative;
+        padding: 6px 0;
+        transition: var(--transition);
+      }
+      nav a:hover,
+      nav a:focus {
+        color: var(--purple-dark);
+      }
+      nav a.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        background: var(--white);
+        border-radius: 2px;
+      }
+   /* SOCIAL ICONS */
+      .social-icons {
+        display: flex;
+        gap: 12px;
+      }
+      .social-icons a {
+        color: white;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+      .social-icons a:hover {
+       color: var(--purple-dark);
+      }
+   /* MOBILE NAVIGATION (HIDDEN BY DEFAULT) */
+      .menu-toggle {
+        display: none;
+        cursor: pointer;
+        color: var(--white);
+        font-size: 2rem;
+      }
+      @media (max-width: 767px) {
+       nav {
+           display: none;
+           position: fixed;
+           top: 56px;
+           left: 0;
+           right: 0;
+           background: var(--purple);
+           flex-direction: column;
+           padding: 16px 24px;
+           gap: 24px;
+           z-index: 1000;
+           max-height: 0;
+           overflow: hidden;
+           transition: max-height 0.4s ease;
+          }
+       nav.open {
+         display: flex;
+         max-height: 400px; /* arbitrary max to reveal content */
+       }
+       .menu-toggle {
+           display: block;
+          }
+       .social-icons {
+           display: none;
+          }
+      }
+   /* HERO SECTION */
+     .hero {
+       position: relative;
+       background: url('https://w0.peakpx.com/wallpaper/238/876/HD-wallpaper-feel-the-beat-music-beat-headphones-music-note-the-beat-i-feel.jpg') center center/cover no-repeat;
+       height: 90vh;
+       color: var(--white);
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       text-align: center;
+       padding: 0 16px;
+       user-select: none;
+      }
+     .hero::before {
+       position: absolute;
+       content: "";
+       inset: 0;
+       background: linear-gradient(180deg, rgba(98, 0, 238, 0.65) 0%, rgba(27, 0, 82, 0.85) 100%);
+       z-index: 0;
+      }
+      .hero-content {
+       position: relative;
+       z-index: 1;
+       max-width: 700px;
+      }
+     .hero-subtitle {
+       font-size: 0.85rem;
+       letter-spacing: 0.11em;
+       opacity: 0.85;
+       margin-bottom: 12px;
+      }
+     .hero-title {
+       font-family: 'Pacifico', cursive;
+       font-size: 3.5rem;
+       margin: 0 0 16px;
+       line-height: 1.1;
+       text-shadow: 0 3px 12px rgba(0,0,0,0.7);
+      }
+      .hero-text {
+       font-size: 1rem;
+       max-width: 500px;
+       margin: 0 auto 28px;
+       color: var(--white);
+       line-height: 1.5;
+      }
+     .hero-play-btn {
+       background: rgba(255 255 255 / 0.3);
+       border-radius: 50%;
+       border: none;
+       width: 72px;
+       height: 72px;
+       color: var(--white);
+       font-size: 2rem;
+       cursor: pointer;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       box-shadow: 0 0 0 rgba(255 255 255 / 0);
+       transition: box-shadow 0.3s ease, background-color 0.4s ease;
+      }
+      .hero-play-btn:hover,
+      .hero-play-btn:focus {
+       background: var(--white);
+       color: var(--purple);
+       outline: none;
+       box-shadow:
+           0 0 8px var(--white),
+           0 0 28px var(--purple),
+           0 0 42px var(--purple);
+      }
+      .hero-play-btn .material-icons {
+       font-size: 2.8rem;
+      }
+     .hero-scroll-down {
+       position: absolute;
+       bottom: 24px;
+       font-size: 2.2rem;
+       color: var(--white);
+       animation: bounceDown 2s infinite ease-in-out;
+       cursor: pointer;
+      }
+     @keyframes bounceDown {
+       0%, 100% { transform: translateY(0); }
+       50% { transform: translateY(12px); }
+      }
+   /* UPCOMING EVENTS SECTION */
+       section.upcoming-events {
+           padding: 64px 0;
+           background: white;
+      }
+     section.upcoming-events .container {
+       max-width: var(--max-width-large);
+      }
+     .section-header {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       margin-bottom: 48px;
+       font-weight: 700;
+       text-transform: uppercase;
+       font-size: 1.3rem;
+       letter-spacing: 0.1em;
+       color: var(--purple-dark);
+       user-select: none;
+      }
+     .event-cards {
+       display: grid;
+       grid-template-columns: repeat(auto-fit,minmax(275px, 1fr));
+       gap: 32px;
+      }
+      .card {
+       background: white;
+       box-shadow: 0 4px 26px rgb(0 0 0 / 0.08);
+       border-radius: 12px;
+       overflow: hidden;
+       transition: var(--transition);
+       cursor: pointer;
+      }
+     .card:hover,
+     .card:focus-within {
+       box-shadow: 0 12px 60px rgb(98 0 238 / 0.3);
+       transform: translateY(-8px);
+      }
+     .card-image-wrapper {
+       position: relative;
+       width: 100%;
+       padding-top: 140%; /* 7:10 ratio */
+       overflow: hidden;
+      }
+      .card-image-wrapper img {
+       position: absolute;
+       inset: 0;
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       object-position: center center;
+       transition: transform 0.4s ease;
+      }
+     .card:hover .card-image-wrapper img,
+     .card:focus-within .card-image-wrapper img {
+       transform: scale(1.06);
+      }
+     .card-date {
+       position: absolute;
+       left: 12px;
+       bottom: 12px;
+       background: var(--purple);
+       color: white;
+       font-size: 0.85rem;
+       padding: 6px 14px;
+       border-radius: 4px;
+       font-weight: 700;
+       user-select: none;
+       pointer-events: none;
+      }
+      .card-body {
+       padding: 18px 18px 28px;
+      }
+     .card-title {
+       margin: 0 0 8px 0;
+       font-weight: 700;
+       font-size: 1.1rem;
+       color: #222;
+       font-family: 'Karla', sans-serif;
+      }
+     .card-location {
+       font-size: 0.85rem;
+       color: #555;
+       display: flex;
+       align-items: center;
+       gap: 6px;
+       user-select: none;
+      }
+     .material-icons.location-icon {
+       color: var(--purple);
+       font-size: 1.25rem;
+      }
+   /* ABOUT SECTION */
+     section.about-dj {
+       max-width: var(--max-width-large);
+       margin: 96px auto 128px;
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 48px;
+       padding: 0 16px;
+       align-items: center;
+      }
+     section.about-dj .image-wrapper {
+       --clip-shape: polygon(50% 0%, 93% 20%, 100% 68%, 75% 100%, 25% 100%, 0 68%, 7% 20%);
+       clip-path: var(--clip-shape);
+       overflow: hidden;
+       border-radius: 0;
+       box-shadow: 0 0 20px rgb(98 0 238 / 0.5);
+      }
+     section.about-dj .image-wrapper img {
+       width: 100%;
+       display: block;
+       object-fit: cover;
+       object-position: center center;
+       transition: transform 0.35s ease;
+      }
+      section.about-dj .image-wrapper:hover img,
+      section.about-dj .image-wrapper:focus-within img {
+       transform: scale(1.1);
+      }
+     section.about-dj .content {
+       max-width: 480px;
+      }
+     section.about-dj h2 {
+       margin-bottom: 20px;
+       font-weight: 700;
+       font-size: 2rem;
+       color: #111;
+       font-family: 'Karla', sans-serif;
+      }
+     section.about-dj p {
+       margin-bottom: 28px;
+       font-size: 1rem;
+       color: #333;
+       line-height: 1.5;
+      }
+      .btn-primary {
+       background-color: var(--purple);
+       color: white;
+       border: none;
+       padding: 14px 32px;
+       font-weight: 700;
+       font-size: 0.9rem;
+       text-transform: uppercase;
+       letter-spacing: 0.09em;
+       cursor: pointer;
+       border-radius: 6px;
+       transition: var(--transition);
+       box-shadow: 0 0 0 rgba(255 255 255 / 0);
+      }
+     .btn-primary:hover,
+     .btn-primary:focus {
+       background-color: var(--purple-dark);
+       outline: none;
+       box-shadow:
+         0 0 10px var(--purple-dark),
+         0 0 28px var(--purple-dark);
+      }
+   /* SERVICES SECTION */
+     section.services {
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       max-width: var(--max-width-large);
+       margin: 0 auto 128px;
+       background: white;
+       box-shadow: 0 6px 40px rgb(0 0 0 / 0.1);
+       border-radius: 0 0 12px 12px;
+       overflow: hidden;
+      }
+     .services-left {
+       position: relative;
+      }
+     .services-left img {
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       display: block;
+       max-height: 100%;
+       filter: brightness(0.85);
+       transition: filter 0.35s ease;
+      }
+      .services-left:hover img,
+      .services-left:focus-within img {
+        filter: brightness(1);
+      }
+      .services-right {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--purple);
+        color: white;
+      }
+      .service-box {
+        padding: 48px 32px;
+        border-right: 1px solid rgba(255 255 255 / 0.15);
+        border-bottom: 1px solid rgba(255 255 255 / 0.15);
+        text-align: left;
+        cursor: default;
+        user-select: none;
+        transition: background-color 0.3s ease;
+      }
+      .service-box:last-child,
+      .service-box:nth-child(2) {
+        border-right: none;
+      }
+      .service-box:nth-child(3),
+      .service-box:nth-child(4) {
+        border-bottom: none;
+      }
+      .service-box:hover {
+       background-color: rgba(255 255 255 / 0.1);
+      }
+     .service-icon {
+       font-size: 2.4rem;
+       margin-bottom: 18px;
+      }
+     .service-title {
+       font-weight: 700;
+       font-size: 1.1rem;
+       margin-bottom: 12px;
+      }
+     .service-desc {
+       font-weight: 400;
+       font-size: 0.9rem;
+       line-height: 1.5;
+      }
+      a {
+       color: #7c3aed;
+       text-decoration: none;
+       transition: color 0.3s ease;
+      }
+      a:hover,
+      a:focus {
+        color: #5b21b6;
+        outline: none;
+      }
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+   /* Utility Flex */
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+   /* Typography */
+     h1, h2, h3, h4 {
+       margin: 0 0 0.5em 0;
+       font-weight: 700;
+       text-transform: uppercase;
+       letter-spacing: 0.05em;
+      }
+     h1 {
+       font-size: 2rem;
+       font-family: 'Open Sans', sans-serif;
+       font-weight: 700;
+      }
+     h2 {
+       font-size: 1.25rem;
+       font-family: 'Nanum Brush Script', cursive;
+       color: #ddd;
+       position: relative;
+       user-select: none;
+          }
+ /* Section Title style */
+  .section-title {
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+  .section-title::after {
+   content: attr(data-title);
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   font-family: 'Nanum Brush Script', cursive;
+   font-size: 4rem;
+   font-weight: 400;
+   color: #eee;
+   opacity: 0.15;
+   white-space: nowrap;
+   pointer-events: none;
+   user-select: none;
+   z-index: -1;
+   letter-spacing: normal;
+  }
+  .section-title::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 4rem;
+    font-weight: 400;
+    color: #eee;
+    opacity: 0.15;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
+    letter-spacing: normal;
+  }
+ /* Buttons */
+  button,
+  .btn {
+    cursor: pointer;
+    border: 2px solid #7c3aed;
+    background: transparent;
+    color: #7c3aed;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.75em 2em;
+    border-radius: 6px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    user-select: none;
+    font-size: 0.9rem;
+  }
+  button:hover,
+  button:focus,
+  .btn:hover,
+  .btn:focus {
+    background-color: #7c3aed;
+    color: white;
+    border-color: #651fff;
+    outline: none;
+  }
+ /* Play button circle */
+  .play-button {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+     border: 2px solid #7c3aed;
+     background: transparent;
+     color: #7c3aed;
+     width: 44px;
+     height: 44px;
+     cursor: pointer;
+     transition: background-color 0.3s ease, transform 0.3s ease;
+     user-select: none;
+     flex-shrink: 0;
+     position: relative;
+    }
+    .play-button:hover,
+    .play-button:focus {
+       background-color: #7c3aed;
+       color: white;
+       outline: none;
+       transform: scale(1.1);
+      }
+     .play-button .material-icons {
+       font-size: 24px;
+      }
+   /* Audio Player Styles */
+   audio {
+     width: 300px;
+     max-width: 100%;
+     outline: none;
+     cursor: pointer;
+     border-radius: 8px;
+     height: 24px;
+     vertical-align: middle;
+     transition: box-shadow 0.3s ease;
+    }
+   audio::-webkit-media-controls-panel {
+     border-radius: 10px;
+    }
+   /* Purple volume slider styling - fallback */
+    input[type="range"] {
+     appearance: none;
+     -webkit-appearance: none;
+     width: 60px;
+     height: 8px;
+     border-radius: 4px;
+     background: #e0e0e0;
+     cursor: pointer;
+     margin-left: 8px;
+     vertical-align: middle;
+    }
+   input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+     appearance: none;
+     width: 14px;
+     height: 14px;
+     border-radius: 50%;
+     background: #7c3aed;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+     box-shadow: 0 0 2px rgba(124, 58, 237, 0.7);
+    }
+   input[type="range"]:hover::-webkit-slider-thumb {
+     background: #651fff;
+    }
+   input[type="range"]::-moz-range-thumb {
+     width: 14px;
+     height: 14px;
+     border-radius: 50%;
+     background: #7c3aed;
+     cursor: pointer;
+     box-shadow: 0 0 2px rgba(124, 58, 237, 0.7);
+     transition: background-color 0.3s ease;
+    }
+   input[type="range"]:hover::-moz-range-thumb {
+     background: #651fff;
+    }
+   /* Layout Styles */
+   /* Latest Tracks and Player Section */
+   .latest-section {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 48px;
+     margin-top: 3rem;
+     margin-bottom: 5rem;
+    }
+    /* Latest tracks list */
+     .track-list {
+       display: flex;
+       flex-direction: column;
+       gap: 32px;
+       max-height: 390px;
+       overflow-y: auto;
+       padding-right: 16px;
+       border-right: 2px solid #efefef;
+       scroll-behavior: smooth;
+      }
+      .track-item {
+       display: flex;
+       flex-direction: column;
+       gap: 12px;
+      }
+      .track-title {
+       font-weight: 700;
+       letter-spacing: 0.05em;
+       font-size: 1.05rem;
+       user-select: none;
+      }
+      .audio-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        color: #444;
+        user-select: none;
+       }
+      .time-label {
+        width: 40px;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+       }
+    /* Volume with icon container */
+     .volume-container {
+       display: flex;
+       align-items: center;
+       gap: 6px;
+       margin-left: auto;
+       min-width: 96px;
+      }
+     .volume-icon {
+       color: #7c3aed;
+       font-size: 20px;
+       user-select: none;
+      }
+    /* Music image container */
+     .latest-image {
+       position: relative;
+       max-width: 100%;
+       background-color: #f2f2f2;
+       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+       border-radius: 12px;
+       aspect-ratio: 1/1;
+       overflow: hidden;
+      }
+      .latest-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        user-select: none;
+        border-radius: 12px;
+       }
+   /* Scrollbar Styling */
+     .track-list::-webkit-scrollbar {
+       width: 8px;
+      }
+     .track-list::-webkit-scrollbar-thumb {
+       background-color: #7c3aed;
+       border-radius: 4px;
+      }
+     .track-list::-webkit-scrollbar-track {
+       background-color: transparent;
+      }
+   /* View All Tracks Button Position - top right of section */
+      .view-tracks-btn {
+        justify-self: end;
+        margin-bottom: -48px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        user-select: none;
+        border-radius: 6px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        padding: 0.75em 2em;
+        border: 2px solid #7c3aed;
+        background: transparent;
+        color: #7c3aed;
+        text-transform: uppercase;
+        align-self: start;
+        transition: all 0.3s ease;
+        margin-top: 4px;
+      }
+    .view-tracks-btn:hover,
+    .view-tracks-btn:focus {
+       background-color: #7c3aed;
+       color: white;
+       border-color: #651fff;
+       outline: none;
+      }
+    /* YouTube Feed Section */
+    .youtube-section {
+       margin-bottom: 7rem;
+       padding-top: 2rem;
+      }
+    .youtube-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+     grid-gap: 32px;
+     max-width: 1180px;
+     margin-left: auto;
+     margin-right: auto;
+     padding: 0 16px;
+    }
+    .youtube-item {
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+    .youtube-thumb {
+      position: relative;
+      cursor: pointer;
+      border-radius: 12px;
+      overflow: hidden;
+      filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.15));
+      transition: transform 0.3s ease;
+    }
+    .youtube-thumb:hover,
+    .youtube-thumb:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+    .youtube-thumb img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    .youtube-thumb .play-icon {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     color: white;
+     font-size: 48px;
+     opacity: 0.85;
+     filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.4));
+     pointer-events: none;
+     user-select: none;
+     background: rgba(124, 58, 237, 0.6);
+     border-radius: 50%;
+     padding: 10px 12px;
+     transition: background 0.3s ease;
+    }
+    .youtube-thumb:hover .play-icon,
+    .youtube-thumb:focus .play-icon {
+      background: rgba(101, 31, 255, 0.8);
+    }
+    .youtube-title {
+       font-weight: 700;
+       margin-top: 12px;
+       font-size: 1rem;
+       user-select: none;
+       line-height: 1.3;
+      }
+   /* Countdown Section */
+    .countdown-section {
+     background-image: url('https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?cs=srgb&dl=pexels-sebastian-ervi-866902-1763075.jpg&fm=jpg');
+     background-size: cover;
+     background-position: center;
+     position: relative;
+     padding: 5rem 1rem 8rem 1rem;
+     text-align: center;
+     color: white;
+     user-select: none;
+     overflow: hidden;
+     border-radius: 0 0 180px 180px / 60% 60% 40% 40%;
+     max-width: 1440px;
+     margin-left: auto;
+     margin-right: auto;
+    }
+   /* Dark overlay */
+     .countdown-section::before {
+       content: '';
+       position: absolute;
+       inset: 0;
+       background: rgba(32, 0, 64, 0.85);
+       pointer-events: none;
+       z-index: 0;
+       border-radius: 0 0 180px 180px / 60% 60% 40% 40%;
+      }
+     .countdown-title-container {
+       position: relative;
+       z-index: 1;
+       margin-bottom: 3rem;
+      }
+     .countdown-subtitle {
+       font-family: 'Nanum Brush Script', cursive;
+       font-size: 3.5rem;
+       font-weight: 400;
+       margin-bottom: 0.25rem;
+       user-select: none;
+      }
+      .countdown-description {
+       font-weight: 400;
+       letter-spacing: 0.1em;
+       font-size: 0.925rem;
+       margin-top: 0;
+       user-select: none;
+      }
+     .countdown-timer {
+       position: relative;
+       z-index: 1;
+       display: grid;
+       grid-template-columns: repeat(4, 1fr);
+       justify-items: center;
+       gap: 3.5rem;
+       margin-bottom: 3rem;
+       margin-top: 0;
+       user-select: none;
+       max-width: 600px;
+       margin-left: auto;
+       margin-right: auto;
+      } 
+      .countdown-unit {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+      }
+      .countdown-number {
+       font-weight: 700;
+       font-size: 3rem;
+       letter-spacing: 0.05em;
+       line-height: 1;
+       font-family: 'Open Sans', sans-serif;
+      }
+      .countdown-label {
+       font-weight: 400;
+       font-size: 0.85rem;
+       letter-spacing: 0.1em;
+       text-transform: uppercase;
+       margin-top: 0.25rem;
+       font-style: normal;
+      }
+    /* Countdown buy tickets button */
+     .buy-btn {
+       position: relative;
+       z-index: 1;
+       background-color: #7c3aed;
+       color: white;
+       border: none;
+       text-transform: uppercase;
+       font-weight: 700;
+       padding: 1rem 2.5rem;
+       border-radius: 6px;
+       letter-spacing: 0.1em;
+       box-shadow: 0 8px 24px rgba(124, 58, 237, 0.65);
+       transition: background-color 0.3s ease;
+       user-select: none;
+       cursor: pointer;
+      }
+     .buy-btn:hover,
+     .buy-btn:focus {
+       background-color: #651fff;
+       outline: none;
+       box-shadow: 0 12px 28px rgba(101, 31, 255, 0.9);
+      }
+    /* Footer */
+      footer {
+       background: #2a1465;
+       color: #ccc;
+       margin-top: 4rem;
+       padding: 3rem 1rem 3rem 1rem;
+       position: relative;
+       user-select: none;
+      }
+      footer .container {
+       display: grid;
+       grid-template-columns: 1fr 1fr 1fr;
+       gap: 3rem 1rem;
+       max-width: 1440px;
+       margin: 0 auto;
+       justify-items: center;
+      }
+      .footer-section {
+       display: flex;
+       flex-direction: column;
+       gap: 1rem;
+       align-items: center;
+      }
+      .footer-section h3 {
+       font-weight: 700;
+       color: white;
+       font-size: 1.25rem;
+       user-select: none;
+       }
+      .contact-info {
+       display: flex;
+       flex-direction: column;
+       gap: 1rem;
+       align-items: center;
+       font-size: 0.9rem;
+      }
+      .contact-item {
+       display: flex;
+       align-items: center;
+       gap: 1rem;
+       font-weight: 400;
+       color: #ddd;
+      }
+     .contact-item span {
+       font-weight: 700;
+       color: #f2ecfe;
+      }
+     .icon-circle {
+       background-color: white;
+       color: #7c3aed;
+       border-radius: 50%;
+       width: 36px;
+       height: 36px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       user-select: none;
+      }
+      .social-icon:hover,
+      .social-icon:focus {
+        background-color: #651fff;
+        color: white;
+        outline: none;
+      }
+    /* Stay with me section */
+     .stay-section {
+       display: flex;
+       flex-direction: column;
+       gap: 1rem;
+       width: 100%;
+       max-width: 320px;
+     }
+     .stay-section input[type=email] {
+       width: 100%;
+       font-size: 1rem;
+       padding: 0.75rem 1rem;
+       border-radius: 0 6px 6px 0;
+       border: none;
+       outline: none;
+       font-weight: 600;
+       letter-spacing: 0.05em;
+       user-select: text;
+      }
+     .input-wrapper {
+       display: flex;
+       width: 100%;
+       border: 2px solid white;
+       border-radius: 6px;
+       overflow: hidden;
+       background: transparent;
+       transition: border-color 0.3s ease;
+      } 
+     .input-wrapper:focus-within {
+       border-color: #7c3aed;
+      }
+     .submit-btn {
+       background-color: white;
+       border: none;
+       border-radius: 0 6px 6px 0;
+       color: #7c3aed;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 48px;
+       cursor: pointer;
+       transition: background-color 0.3s ease, color 0.3s ease;
+       user-select: none;
+       padding: 0;
+       outline-offset: 2px;
+       outline-color: #7c3aed;
+       outline-style: solid;
+       outline-width: 0;
+       border-left: 2px solid white;
+       position: relative;
+       font-size: 18px;
+      }
+      .submit-btn:hover,
+      .submit-btn:focus {
+       background-color: #7c3aed;
+       color: white;
+       outline-width: 3px;
+       outline-offset: 3px;
+      }
+   /* Footer copyright */
+    footer .footer-bottom {
+     margin-top: 3rem;
+     font-size: 0.85rem;
+     text-align: center;
+     color: #aaa;
+     user-select: none;
+    }
+    footer .footer-bottom a {
+     color: #7c3aed;
+     text-decoration: underline;
+    }
+    footer .footer-bottom a:hover,
+    footer .footer-bottom a:focus {
+     color: #651fff;
+     outline: none;
+    }
+   /* Responsive Layout */
+     @media (max-width: 767px) {
+       .latest-section {
+         display: flex;
+         flex-direction: column;
+         gap: 48px;
+       }
+       .track-list {
+         max-height: none;
+         border-right: none;
+         padding-right: 0;
+       }
+       .latest-image {
+         max-width: 100%;
+         max-height: 320px;
+         width: 100%;
+         height: 100%;
+         border-radius: 16px;
+       }
+       footer .container {
+         grid-template-columns: 1fr;
+       }
+       .footer-section {
+         align-items: flex-start;
+         gap: 0.5rem;
+       }
+       .contact-info {
+         align-items: flex-start;
+       }
+       .stay-section {
+         max-width: none;
+         width: 100%;
+       }
+       .countdown-section {
+         border-radius: 0 0 80px 80px / 40% 40% 30% 30%;
+         padding: 4rem 1rem 6rem 1rem;
+       }
+       .countdown-timer {
+         grid-template-columns: repeat(2, 1fr);
+         gap: 2.5rem;
+         max-width: 360px;
+         margin-left: auto;
+         margin-right: auto;
+       }
+        .countdown-subtitle {
+         font-size: 2rem;
+       }
+       .countdown-number {
+         font-size: 2.5rem;
+       }
+     }
+     @media (min-width: 768px) and (max-width: 1023px) {
+       .latest-section {
+         grid-template-columns: 1.2fr 1fr;
+       }
+       .youtube-grid {
+         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+         grid-gap: 32px;
+       }
+       footer .container {
+         grid-template-columns: repeat(2, 1fr);
+       }
+     }
+     @media (min-width: 1024px) {
+       .latest-section {
+         grid-template-columns: 1fr 1fr;
+       }
+       footer .container {
+         grid-template-columns: repeat(3, 1fr);
+       }
+     }
+     @media (min-width: 1440px) {
+       .container {
+         max-width: 1440px;
+         padding-left: 48px;
+         padding-right: 48px;
+       }
+     }
+   /* RESPONSIVE LAYOUTS */
+      /* Table to Desktop */
+      @media screen and (max-width: 1023px) {
+       section.about-dj {
+            margin: 64px 16px 96px;
+            grid-template-columns: 1fr;
+            gap: 48px;
+          }
+       section.services {
+           grid-template-columns: 1fr;
+           margin: 0 16px 96px;
+          }
+       section.services .services-right {
+           grid-template-columns: 1fr 1fr;
+           grid-auto-rows: minmax(128px, auto);
+          }
+      }
+   /* Mobile */
+      @media screen and (max-width: 767px) {
+       .hero-title {
+           font-size: 2.6rem;
+           line-height: 1.1;
+          }
+       .hero-text {
+           font-size: 0.9rem;
+           max-width: 270px;
+            margin-bottom: 24px;
+         }
+       .hero-play-btn {
+           width: 60px;
+           height: 60px;
+           font-size: 1.6rem;
+          }
+       section.upcoming-events .section-header {
+           font-size: 1rem;
+           padding: 0 0 0 8px;
+          }
+       .event-cards {
+           grid-template-columns: 1fr;
+          }
+          section.about-dj {
+           padding: 0 0;
+          }
+         section.services .service-box {
+           padding: 28px 18px;
+           font-size: 0.9rem;
+          }
+         section.services .service-icon {
+           font-size: 1.8rem;
+           margin-bottom: 8px;
+          }
+      }
+  </style>
+</head>
+<body>
+    <header>
+     <div class="header-inner container">
+       <a href="#" class="logo" aria-label="DJoz homepage logo">DJoz</a>
+       <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+       <nav aria-label="Primary Navigation">
+         <a href="#" class="active" tabindex="0">Home</a>
+         <a href="#">About</a>
+         <a href="#">Discography</a>
+         <a href="#">Tours</a>
+         <a href="#">Videos</a>
+         <a href="#">Pages</a>
+         <a href="#">Contact</a>
+       </nav>
+       <div class="social-icons" aria-label="Social media links">
+         <a href="#" aria-label="Facebook" tabindex="0"><span class="material-icons"><i class="fa-brands fa-facebook"></i></span></a>
+         <a href="#" aria-label="Twitter" tabindex="0"><span class="material-icons"><i class="fa-brands fa-twitter"></i></span></a>
+         <a href="#" aria-label="Instagram" tabindex="0"><span class="material-icons"><i class="fa-brands fa-instagram"></i></span></a>
+         <a href="#" aria-label="Website" tabindex="0"><span class="material-icons"><i class="fa-solid fa-globe"></i></span></a>
+       </div>
+     </div>
+   </header>
+   <main>
+  <!-- Hero Section -->
+  <section class="hero" role="banner" aria-label="New single promotional section">
+    <div class="hero-content">
+      <p class="hero-subtitle">NEW SINGLE</p>
+      <h1 class="hero-title">Feel the heart beats</h1>
+      <p class="hero-text">
+       "Heartbeat" is a common sound effect used in music, particularly in genres like electronic music, ambient music, and even some pop songs. 
+      </p>
+      <button class="hero-play-btn" aria-label="Play new single">
+        <span class="material-icons" style="justify-content: center; align-items: center;"><i class="fa-solid fa-play"></i></span>
+      </button>
+    </div>
+    <div class="hero-scroll-down" aria-hidden="true" title="Scroll down"><i class="fa-solid fa-angle-down"></i></div>
+  </section>
+ <!-- Upcoming Events Section -->
+  <section class="upcoming-events" aria-label="Upcoming Events">
+    <div class="container">
+      <div class="section-header" aria-live="polite">
+        Upcoming Events 
+        <span aria-hidden="true" style="font-weight: normal; font-size: 1.5rem; cursor: pointer;">&#9664; &#9654;</span>
+      </div>
+      <div class="event-cards">
+        <article class="card" tabindex="0" aria-label="Event: David Guetta Miami Ultra on Dec 15, 2019 at Funkhaus Berlin, Berlin, Germany">
+          <div class="card-image-wrapper">
+            <img src="https://im.rediff.com/news/2025/apr/06shreya-ghoshal.jpg" alt="Shreya Ghoshal" loading="lazy" />
+            <span class="card-date">Jul 20, 2025</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Shreya Ghoshal</h3>
+            <p class="card-location"><span class="material-icons location-icon" aria-hidden="true"></span> Connaught Place, New Delhi</p>
+          </div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Event: David Guetta Miami Ultra on Dec 15, 2019 at Funkhaus Berlin, Berlin, Germany">
+          <div class="card-image-wrapper">
+            <img src="https://i.pinimg.com/736x/cf/c2/1a/cfc21a4ebee1371e006ff27448337397.jpg" alt="Atif Aslam" loading="lazy" />
+            <span class="card-date">Jul 25, 2025</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Atif Aslam</h3>
+            <p class="card-location"><span class="material-icons location-icon" aria-hidden="true"></span> IG Indoor Stadium, New Delhi</p>
+          </div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Event: David Guetta Miami Ultra on Dec 15, 2019 at Funkhaus Berlin, Berlin, Germany">
+          <div class="card-image-wrapper">
+            <img src="https://rollingstoneindia.com/wp-content/uploads/2022/01/SHAAN3.jpg" alt="Shaan" loading="lazy" />
+            <span class="card-date">Jul 30, 2025</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Shaan</h3>
+            <p class="card-location"><span class="material-icons location-icon" aria-hidden="true"></span> Cannaught Palce, New Delhi</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!-- About DJ Section -->
+  <section class="about-dj" aria-label="About DJ Alexandra Rud">
+    <div class="image-wrapper" tabindex="0" aria-describedby="about-dj-desc">
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/8a/78/14/8a7814b5-4c97-8bf0-d76c-7cfc14a108d0/mza_2817632607921581924.jpg/600x600bb.jpg" alt="DJ NYK" loading="lazy" />
+    </div>
+    <div class="content">
+      <h2 id="about-dj-desc">DJ NYK</h2>
+      <p>
+         Nikhil Sahni also known as DJ NYK is an Indian DJ, music producer, radio host, VJ,
+         music career coach, and label owner at Play Life records. He is widely known for 
+         his Bollywood remixes, mashups, and his live sets in locations like Lake Pichola 
+         and Kerala backwaters.
+      </p>
+      <button class="btn-primary" type="button" aria-label="Contact DJ Alexandra Rud">CONTACT ME</button>
+    </div>
+  </section>
+   <!-- Services Section -->
+  <section class="services" aria-label="DJ Services">
+    <div class="services-left" tabindex="0" aria-describedby="services-desc">
+      <img src="https://cdn.pixabay.com/photo/2016/11/22/19/15/hand-1850120_1280.jpg" alt="Closeup of hand adjusting DJ mixer illuminated by violet and pink lights" loading="lazy" />
+    </div>
+    <div class="services-right">
+      <div class="service-box" tabindex="0" aria-label="Wedding DJ Service">
+        <span class="material-icons service-icon" aria-hidden="true"><i class="fa-solid fa-heart"></i></span>
+        <h3 class="service-title">Wedding</h3>
+        <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+      </div>
+      <div class="service-box" tabindex="0" aria-label="Clubs and Bar DJ Service">
+        <span class="material-icons service-icon" aria-hidden="true"><i class="fa-solid fa-martini-glass"></i></span>
+        <h3 class="service-title">Clubs and bar</h3>
+        <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+      </div>
+      <div class="service-box" tabindex="0" aria-label="Corporate Events DJ Service">
+        <span class="material-icons service-icon" aria-hidden="true"><i class="fa-solid fa-gift"></i></span>
+        <h3 class="service-title">Corporate events</h3>
+        <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+      </div>
+      <div class="service-box" tabindex="0" aria-label="DJ Lessons Service">
+        <span class="material-icons service-icon" aria-hidden="true"><i class="fa-solid fa-headphones-simple"></i></span>
+        <h3 class="service-title">DJ lessons</h3>
+        <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+      </div>
+      </div>
+  </section>
+   <main class="container" role="main" aria-label="Music festival website main content">
+
+  <!-- Latest Tracks Section -->
+    <section class="latest-section" aria-label="Latest tracks section">
+      <div id="latest-tracks" aria-live="polite" aria-atomic="true" class="track-list" tabindex="0">
+        <button class="view-tracks-btn" aria-label="View all tracks">VIEW ALL TRACKS</button> <br>
+        <!-- Track Item -->
+        <article class="track-item">
+          <h3 class="track-title">Hasi- Shreya Ghoshal</h3>
+          <div class="audio-controls">
+            <source src="./Music Section/HAAN HASI BAN GAYE (LYRICS)  SHREYA GHOSHAL  HAMARI ADHURI KAHANI.mp3" type="audio/mpeg" />
+            <!-- <button class="play-button" aria-label="Play track 1"><span class="material-icons">play_arrow</span></button> -->
+            <time class="time-label" datetime="PT0M0S">00:00</time>
+            <audio id="audio1" preload="metadata" controls aria-describedby="duration1" tabindex="-1">
+              <source src="./Music Section/HAAN HASI BAN GAYE (LYRICS)  SHREYA GHOSHAL  HAMARI ADHURI KAHANI.mp3" type="audio/mpeg" />
+              <!-- Your browser does not support the audio element. -->
+            </audio>
+            <time id="duration1" class="time-label" datetime="PT3M10S">03:10</time>
+            <div class="volume-container" aria-label="Volume control">
+              <span class="material-icons volume-icon" aria-hidden="true">volume_up</span>
+              <input type="range" min="0" max="1" step="0.01" value="0.7" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0.7" aria-label="Adjust volume for track 1" />
+            </div>
+          </div>
+        </article>
+        <article class="track-item">
+          <h3 class="track-title">Manwa Lage- Shreya Ghoshal</h3>
+          <div class="audio-controls">
+            <!-- <button class="play-button" aria-label="Play track 2"><span class="material-icons">play_arrow</span></button> -->
+            <time class="time-label" datetime="PT0M0S">00:00</time>
+            <audio id="audio2" preload="metadata" controls aria-describedby="duration2" tabindex="-1">
+              <source src="./Music Section/Manwa Laage (Lyrics)Happy New Year  Arijit Singh  Shreya Ghoshal.mp3" type="audio/mpeg" />
+            </audio>
+            <time id="duration2" class="time-label" datetime="PT1M0S">04:46</time>
+            <div class="volume-container" aria-label="Volume control">
+              <span class="material-icons volume-icon" aria-hidden="true">volume_up</span>
+              <input type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Adjust volume for track 2" />
+            </div>
+          </div>
+        </article>
+        <article class="track-item">
+          <h3 class="track-title">Dil Meri na Sune- Ati Aslam</h3>
+          <div class="audio-controls">
+            <!-- <button class="play-button" aria-label="Play track 3"><span class="material-icons">play_arrow</span></button> -->
+            <time class="time-label" datetime="PT0M0S">00:00</time>
+            <audio id="audio3" preload="metadata" controls aria-describedby="duration3" tabindex="-1">
+              <source src="./Music Section/Dil Meri Na Sune Lyrical - Genius  Utkarsh Sharma, Ishita  Atif Aslam  Himesh Reshammiya.mp3" type="audio/mpeg" />
+            </audio>
+            <time id="duration3" class="time-label" datetime="PT1M19S">03:19</time>
+            <div class="volume-container" aria-label="Volume control">
+              <span class="material-icons volume-icon" aria-hidden="true">volume_up</span>
+              <input type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Adjust volume for track 3" />
+            </div>
+          </div>
+        </article>
+        <article class="track-item">
+          <h3 class="track-title">Tera Hone Laga Hoon- Atif Aslam</h3>
+          <div class="audio-controls">
+            <!-- <button class="play-button" aria-label="Play track 4"><span class="material-icons">play_arrow</span></button> -->
+            <time class="time-label" datetime="PT0M0S">00:00</time>
+            <audio id="audio4" preload="metadata" controls aria-describedby="duration4" tabindex="-1">
+              <source src="./Music Section/Tera Hone Laga Hoon Lyrics - Ajab Prem Ki Gazab Kahaani  Pritam, Atif Aslam, Alisha Chinai.mp3" type="audio/mpeg" />
+            </audio>
+             <time id="duration4" class="time-label" datetime="PT0M59S">04:59</time>
+            <div class="volume-container" aria-label="Volume control">
+              <span class="material-icons volume-icon" aria-hidden="true">volume_up</span>
+              <input type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Adjust volume for track 4" />
+            </div>
+          </div>
+        </article>
+        
+        <article class="track-item">
+          <h3 class="track-title">Dil Leke- Shaan</h3>
+          <div class="audio-controls">
+            <!-- <button class="play-button" aria-label="Play track 4"><span class="material-icons">play_arrow</span></button> -->
+            <time class="time-label" datetime="PT0M0S">00:00</time>
+            <audio id="audio4" preload="metadata" controls aria-describedby="duration4" tabindex="-1">
+              <source src="./Music Section/Dil Leke (Full Song)  Wanted  Salmaan Khan.mp3" type="audio/mpeg" />
+            </audio>
+             <time id="duration4" class="time-label" datetime="PT0M59S">04:59</time>
+            <div class="volume-container" aria-label="Volume control">
+              <span class="material-icons volume-icon" aria-hidden="true">volume_up</span>
+              <input type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Adjust volume for track 4" />
+            </div>
+          </div>
+        </article>
+        <article class="track-item">
+          <h3 class="track-title">Hey Shona- Shaan</h3>
+          <div class="audio-controls">
+            <!-- <button class="play-button" aria-label="Play track 4"><span class="material-icons">play_arrow</span></button> -->
+            <time class="time-label" datetime="PT0M0S">00:00</time>
+            <audio id="audio4" preload="metadata" controls aria-describedby="duration4" tabindex="-1">
+              <source src="./Music Section/Hey Shona  Full Song  Ta Ra Rum Pum  Saif Ali Khan, Rani Mukerji  Shaan, Sunidhi, Vishal-Shekhar.mp3" type="audio/mpeg" />
+            </audio>
+             <time id="duration4" class="time-label" datetime="PT0M59S">04:59</time>
+            <div class="volume-container" aria-label="Volume control">
+              <span class="material-icons volume-icon" aria-hidden="true">volume_up</span>
+              <input type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Adjust volume for track 4" />
+            </div>
+          </div>
+        </article>
+      </div>
+  <!-- Large music image on right -->
+      <figure class="latest-image" aria-label="Concert crowd with confetti and colorful lights">
+        <img src="https://ygo-assets-websites-editorial-emea.yougov.net/images/GettyImages-451813251.original.jpg" alt="Concert crowd enjoying colorful confetti and lights" />
+      </figure>
+    </section>
+    
+  <!-- YouTube Feed Section -->
+   <section class="youtube-section" aria-label="YouTube Feed">
+     <h2 class="section-title" data-title="YOUTUBE FEED" style="color: black;">YOUTUBE FEED</h2>
+     <div class="youtube-grid">
+       <!-- Video 1: Shreya Ghoshal -->
+       <article class="youtube-item">
+         <a href="https://www.youtube.com/watch?v=SMFiM_S9iac" target="_blank" rel="noopener noreferrer" class="youtube-thumb">
+           <img src="https://i.ytimg.com/vi/SMFiM_S9iac/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGEIgTShyMA8=&rs=AOn4CLDn0tOXD2B5p2XYIQPGmTONGCIQwQ" alt="Shreya Ghoshal Live Concert Thumbnail" width="360" height="200">
+           <span class="play-icon">&#9658;</span>
+         </a>
+         <h3 class="youtube-title">Shreya Ghoshal - Live Concert</h3>
+       </article>
+   
+       <!-- Video 2: Atif Aslam -->
+       <article class="youtube-item">
+         <a href="https://www.youtube.com/watch?v=POXA-gr5Ggo" target="_blank" rel="noopener noreferrer" class="youtube-thumb">
+           <img src="https://images.ctfassets.net/opz1rk40r4ou/5I4AiDk1cQnHzfGSRC3QW8/e2d4a165b84a3380c0045722c1848214/Pakistan-20singer-20Atif-20Aslam-20performs-20at-20Jubilee-20Stage_Web-20Image_m11198.jpg?w=2000&q=90&fm=jpg" alt="Atif Aslam Live Concert Thumbnail" width="360" height="200">
+           <span class="play-icon">&#9658;</span>
+         </a>
+         <h3 class="youtube-title">Atif Aslam - Live Concert</h3>
+       </article>
+   
+       <!-- Video 3: Shaan -->
+       <article class="youtube-item">
+         <a href="https://www.youtube.com/watch?v=wSOHkK2EMco" target="_blank" rel="noopener noreferrer" class="youtube-thumb">
+           <img src="https://static.spotboye.com/uploads/Shaan-Scared_2018-10-30-9-20-4_thumbnail.jpg" alt="Shaan Live Concert Thumbnail" width="360" height="200">
+           <span class="play-icon">&#9658;</span>
+         </a>
+         <h3 class="youtube-title">Shaan - Live Concert</h3>
+       </article>
+      </div>
+    </section>
+  <!-- Countdown Section -->
+    <section class="countdown-section" aria-label="Tomorrowland 2020 music festival countdown timer">
+      <div class="countdown-title-container">
+        <h2 class="countdown-subtitle">Tomorrowland 2025</h2>
+        <p class="countdown-description" aria-live="polite" aria-atomic="true">Music Festival Start in</p>
+      </div>
+      <div class="countdown-timer" role="timer" aria-live="assertive" aria-atomic="true" aria-relevant="all" id="countdown">
+        <div class="countdown-unit" aria-label="Days remaining">
+          <span class="countdown-number" id="days">29</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit" aria-label="Hours remaining">
+          <span class="countdown-number" id="hours">02</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit" aria-label="Minutes remaining">
+          <span class="countdown-number" id="minutes">24</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-unit" aria-label="Seconds remaining">
+          <span class="countdown-number" id="seconds">09</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+       <button class="buy-btn" aria-label="Buy tickets now">buy tickets</button>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer>
+    <div class="container" role="contentinfo">
+      <section class="footer-section contact-info" aria-label="Contact info">
+        <h3>Contact</h3>
+        <div class="contact-item">
+          <div class="icon-circle" aria-hidden="true">
+            <span class="material-icons"><i class="fa-solid fa-phone" style="color: black;"></i></span>
+          </div>
+          <div><span>Phone</span> 1-677-124-44227</div>
+        </div>
+        <div class="contact-item">
+          <div class="icon-circle" aria-hidden="true">
+            <span class="material-icons"><i class="fa-solid fa-envelope" style="color: black;"></i></span>
+          </div>
+          <div><span>Email</span> DJ.Music@gmail.com</div>
+        </div>
+      </section>
+      <section class="footer-section" aria-label="Site branding and social media links">
+        <h3>DJOz</h3>
+        <nav class="social-icons" aria-label="Social media links">
+          <a href="#" class="social-icon" aria-label="Facebook" tabindex="0"><span class="material-icons"><i class="fa-brands fa-facebook"></i></span></a>
+          <a href="#" class="social-icon" aria-label="Twitter" tabindex="0"><span class="material-icons"><i class="fa-brands fa-twitter"></i></span></a>
+          <a href="#" class="social-icon" aria-label="Instagram" tabindex="0"><span class="material-icons"><i class="fa-brands fa-instagram"></i></span></a>
+          <a href="#" class="social-icon" aria-label="Dribbble" tabindex="0"><span class="material-icons"><i class="fa-solid fa-basketball"></i></span></a>
+        </nav>
+      </section>
+      <section class="footer-section stay-section" aria-label="Stay With Me newsletter signup">
+        <h3>Stay With me</h3>
+        <form action="#" method="post" role="form" aria-label="Subscribe to newsletter form">
+          <label for="email" class="sr-only">Email</label>
+          <div class="input-wrapper">
+            <input type="email" id="email" name="email" placeholder="Email" aria-required="true" required />
+            <button class="submit-btn" type="submit" aria-label="Submit email for newsletter subscription">
+              <span class="material-icons">send</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <div class="footer-bottom" aria-label="Copyright information">
+      Copyright © 2025 All rights reserved | This template is made with <span aria-hidden="true" style="color:#e63946;">&#10084;</span> by <a href="https://colorlib.com" target="_blank" rel="noopener">Colorlib</a>
+    </div>
+  </main>
+ <script>
+   // date I counting down to
+   const countdownDate = new Date("Jan 24, 2026 00:00:00").getTime();
+ 
+   const updateCountdown = () => {
+     const now = new Date().getTime();
+     const distance = countdownDate - now;
+ 
+     if (distance < 0) {
+       document.getElementById("countdown").innerHTML = "<p>Festival Started!</p>";
+       return;
+     }
+ 
+     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+ 
+     document.getElementById("days").innerText = days.toString().padStart(2, '0');
+     document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+     document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+     document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+   };
+ 
+   // Update countdown every second
+   setInterval(updateCountdown, 1000);
+   updateCountdown(); // initial call
+ </script>
+</body>
+</html>
